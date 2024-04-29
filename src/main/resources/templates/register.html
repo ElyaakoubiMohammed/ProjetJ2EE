@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Google Font Link */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins" , sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url("/img/register.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 30px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            width: 70%;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        form::before {
+            content: '';
+            position: absolute;
+            height: 74%;
+            width: 2px;
+            background-color: #ccc;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        form div {
+            width: 48%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        form div:last-child {
+            width: 100%;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        input, select {
+            padding: 12px;
+            width: 60%;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+            display: block;
+            margin: 0 auto;
+        }
+
+        input:focus, select:focus {
+            border-color: #7d2ae8;
+            outline: none;
+        }
+
+        .container {
+            position: relative;
+        }
+
+        #loginn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 440px 0;
+        }
+
+        button {
+            width: 40%;
+            background: #7d2ae8;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: block;
+            margin: 50px auto;
+        }
+
+
+
+        button:hover {
+            background: #5b13b9;
+        }
+
+        @media (max-width: 768px) {
+            form div {
+                width: 100%;
+            }
+
+            form::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>User Registration</h2>
+    <form action="/register" method="post">
+        <div>
+            <label for="username">Username :</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="country">Country :</label>
+            <input type="text" id="country" name="country" required>
+        </div>
+        <div>
+            <label for="FirstName">First Name:</label>
+            <input type="text" id="firstname" name="FirstName">
+        </div>
+        <div>
+            <label for="LastName">Last Name:</label>
+            <input type="text" id="lastname" name="LastName">
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+        </div>
+        <div>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <a id="loginn" href="/login">Already have an account? Login here</a>
+        <button type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>
