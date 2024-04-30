@@ -50,5 +50,8 @@
             return "profile";
         }
 
-
+        @RequestMapping("/main")
+        public String Acceuil() {
+            return "main";
+        }
     }
