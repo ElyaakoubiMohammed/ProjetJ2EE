@@ -45,7 +45,10 @@
                 return "redirect:/login";
             }
         }
-
+        @RequestMapping("/profile")
+        public String Profile() {
+            return "profile";
+        }
 
 
     }
