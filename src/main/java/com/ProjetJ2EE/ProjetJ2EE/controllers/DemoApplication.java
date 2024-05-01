@@ -1,15 +1,27 @@
     package com.ProjetJ2EE.ProjetJ2EE.controllers;
 
     import com.ProjetJ2EE.ProjetJ2EE.entities.Account;
+    import com.ProjetJ2EE.ProjetJ2EE.entities.Game;
+    import com.ProjetJ2EE.ProjetJ2EE.entities.User;
+    import com.ProjetJ2EE.ProjetJ2EE.repositories.GameRepository;
+    import com.ProjetJ2EE.ProjetJ2EE.repositories.UserRepository;
     import com.ProjetJ2EE.ProjetJ2EE.services.AccountService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Controller;
+    import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.*;
+
+    import java.util.List;
 
     @Controller
     public class DemoApplication {
-
+        @Autowired
         private final AccountService accountService;
+        @Autowired
+        private GameRepository gameRepository;
+
+        @Autowired
+        private UserRepository userRepository;
 
         @Autowired
         public DemoApplication(AccountService accountService) {
@@ -51,7 +63,14 @@
         }
 
         @RequestMapping("/main")
-        public String Acceuil() {
+        public String Acceuil(Model model) {
+            List<Game> games = gameRepository.findAll();
+            model.addAttribute("games", games);
+
+            List<User> coaches = userRepository.findByUserType("C");
+            model.addAttribute("coaches", coaches);
             return "main";
         }
+
+
     }

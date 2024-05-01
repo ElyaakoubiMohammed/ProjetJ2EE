@@ -55,7 +55,9 @@
                     </li>
                 </ul>
 
-                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="https://mobiri.se">Join Now</a></div>
+                <div class="navbar-buttons mbr-section-btn">
+                    <a class="btn btn-primary display-4" href="https://mobiri.se">Join Now</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -108,7 +110,7 @@
     </div>
 </section>
 
-<section data-bs-version="5.1" class="pricing02 cid-ubqZdXI9Q1" id="product-list-9-ubqZdXI9Q1">
+<<section data-bs-version="5.1" class="pricing02 cid-ubqZdXI9Q1" id="product-list-9-ubqZdXI9Q1">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12 content-head">
@@ -120,102 +122,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="item features-image col-12 col-md-6 col-lg-4">
+            <div th:each="game : ${games}" class="item features-image col-12 col-md-6 col-lg-4">
                 <div class="item-wrapper">
-                    <div class="item-img">
-                        <img th:src="@{/assets/images/photo-1538481199705-c710c4e965fc.jpeg}" alt="Mobirise Website Builder">
-                    </div>
                     <div class="item-content">
                         <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Galactic Quest</strong>
+                            <strong th:text="${game.gameName}">Game Name</strong>
                         </h5>
-                        <h6 class="item-subtitle mbr-fonts-style display-7">$19.99</h6>
-                        <p class="mbr-text mbr-fonts-style display-7">Embark on an interstellar adventure like never before. Save the galaxy and be the hero!</p>
-                        <div class="mbr-section-btn item-footer">
-                            <a href="#" class="btn item-btn btn-primary display-7">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img th:src="@{/assets/images/photo-1560419015-7c427e8ae5ba.jpeg}" alt="Mobirise Website Builder">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Fantasy Realms</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style display-7">$24.99</h6>
-                        <p class="mbr-text mbr-fonts-style display-7">Enter a realm of magic and mystery. Unleash your inner warrior and conquer the unknown!</p>
-                        <div class="mbr-section-btn item-footer">
-                            <a href="#" class="btn item-btn btn-primary display-7">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img th:src="@{/assets/images/photo-1657664072470-99b02c2143f2.jpeg}" alt="Mobirise Website Builder">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Cyberpunk Chaos</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style display-7">$29.99</h6>
-                        <p class="mbr-text mbr-fonts-style display-7">Dive into a dystopian future filled with danger and intrigue. Will you survive the chaos?</p>
-                        <div class="mbr-section-btn item-footer">
-                            <a href="#" class="btn item-btn btn-primary display-7">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img th:src="@{/assets/images/photo-1587202372616-b43abea06c2a.jpeg}">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Mystic Mayhem</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style display-7">$22.99</h6>
-                        <p class="mbr-text mbr-fonts-style display-7">Unravel ancient secrets and wield mystical powers. Are you ready to embrace the mayhem?</p>
-                        <div class="mbr-section-btn item-footer">
-                            <a href="#" class="btn item-btn btn-primary display-7">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img th:src="@{/assets/images/photo-1579373903781-fd5c0c30c4cd.jpeg}">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Pirate Plunder</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style display-7">$27.99</h6>
-                        <p class="mbr-text mbr-fonts-style display-7">Hoist the sails and plunder the high seas. Become the most feared pirate in history!</p>
-                        <div class="mbr-section-btn item-footer">
-                            <a href="#" class="btn item-btn btn-primary display-7">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-4">
-                <div class="item-wrapper">
-                    <div class="item-img">
-                        <img th:src="@{/assets/images/photo-1493711662062-fa541adb3fc8.jpeg}">
-                    </div>
-                    <div class="item-content">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Wild West Showdown</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style display-7">$25.99</h6>
-                        <p class="mbr-text mbr-fonts-style display-7">Saddle up and ride into the lawless frontier. Will you be the fastest gun in the West?</p>
+                        <h6 class="item-subtitle mbr-fonts-style display-7">
+                            <span th:text="${game.prix}">$00.00</span>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            <span th:text="${game.description}">Game Description</span>
+                        </p>
                         <div class="mbr-section-btn item-footer">
                             <a href="#" class="btn item-btn btn-primary display-7">Play Now</a>
                         </div>
@@ -512,9 +430,8 @@
                 <div class="item features-image col-12 col-md-6 col-lg-6 active">
                     <div class="item-wrapper">
                         <div class="item-img">
-                            <img th:src="@{/assets/images/photo-1519669556878-63bdad8a1a49.jpeg}" alt="Mobirise Website Builder" title="" data-slide-to="1" data-bs-slide-to="1">
+                            <img th:src="@{/assets/images/Zoe.jpg}" alt="Mobirise Website Builder" title="" data-slide-to="1" data-bs-slide-to="1">
                         </div>
-
                     </div>
                 </div>
                 <div class="item features-image col-12 col-md-6 col-lg-6 active">
@@ -536,7 +453,7 @@
                 <div class="item features-image col-12 col-md-6 col-lg-6 active">
                     <div class="item-wrapper">
                         <div class="item-img">
-                            <img th:src="@{/assets/images/photo-1580327344181-c1163234e5a0.jpeg}" alt="Mobirise Website Builder" title="" data-slide-to="4" data-bs-slide-to="4">
+                            <img th:src="@{/assets/images/gta.jpg}" alt="Mobirise Website Builder" title="" data-slide-to="4" data-bs-slide-to="4">
                         </div>
 
                     </div>
@@ -554,7 +471,7 @@
         <div class="row">
             <div class="content-wrap col-12 col-md-6">
                 <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-2">
-                    <strong>Unleash Your Gaming Fantasies Here!</strong>
+                    <strong>Unleash Your Gaming Fantasies Here With Our Wide Variety of Categories!</strong>
                 </h1>
 
                 <p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">Explore the Wildest Digital Games Collection Ever.</p>
