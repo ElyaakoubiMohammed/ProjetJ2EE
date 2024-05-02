@@ -1,12 +1,16 @@
 package com.ProjetJ2EE.ProjetJ2EE.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Image
 {
     @Id
@@ -16,29 +20,10 @@ public class Image
     @JoinColumn(name = "game_id")
     private Game game;
 
-    public Image(Long imageId, Game game) {
-        ImageId = imageId;
-        this.game = game;
-    }
-
-    public Long getImageId() {
-        return ImageId;
-    }
-
-    public void setImageId(Long imageId) {
-        ImageId = imageId;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    public Image() {
-    }
+    @Lob
+    @Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image;
+    private String PictureBase64;
 
     @Override
     public String toString() {
