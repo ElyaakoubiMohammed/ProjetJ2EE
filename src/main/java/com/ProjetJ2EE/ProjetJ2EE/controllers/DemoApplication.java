@@ -100,4 +100,24 @@
             return Base64.getEncoder().encodeToString(bytes);
         }
 
+        @GetMapping("/game-details/{id}")
+        public String showGameDetails(@PathVariable("id") Long id, Model model) {
+            // Retrieve game details from the database using the game ID
+            Game game = gameRepository.findById(id).orElse(null);
+
+            if (game != null) {
+                List<Image> images = game.getImages();
+                images.forEach(image -> {
+                    String base64Image = bytesToBase64(image.getImage());
+                    image.setPictureBase64(base64Image);
+                });
+
+                model.addAttribute("game", game);
+                return "game-details";
+            } else {
+
+                return "error";
+            }
+        }
+
     }

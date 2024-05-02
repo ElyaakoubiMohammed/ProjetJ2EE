@@ -143,7 +143,7 @@
                             <span th:text="${game.description}">Game Description</span>
                         </p>
                         <div class="mbr-section-btn item-footer">
-                            <a href="#" class="btn item-btn btn-primary display-7">Play Now</a>
+                            <a th:href="@{'/game-details/' + ${game.gameId}}" class="btn item-btn btn-primary display-7">Play Now</a>
                         </div>
                     </div>
                 </div>
@@ -151,8 +151,6 @@
         </div>
     </div>
 </section>
-
-
 
 <section data-bs-version="5.1" class="features037 cid-ubqZdXJHMF" id="features-68-ubqZdXJHMF">
     <div class="container">
