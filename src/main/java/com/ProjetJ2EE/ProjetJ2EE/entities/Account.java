@@ -21,8 +21,8 @@ public class Account
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long AccountId;
-    private String Username;
-    private String Email;
+    private String username;
+    private String email;
     private String Password;
     private String Country;
     private int GameCount;
@@ -34,20 +34,5 @@ public class Account
 
 
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "AccountId=" + AccountId +
-                ", Username='" + Username + '\'' +
-                ", email='" + Email + '\'' +
-                ", Password='" + Password + '\'' +
-                ", Country='" + Country + '\'' +
-                ", GameCount=" + GameCount +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", Age=" + Age +
-                ", Gender='" + Gender + '\'' +
-                ", UserType='" + usertype + '\'' +
-                '}';
-    }
+
 }
