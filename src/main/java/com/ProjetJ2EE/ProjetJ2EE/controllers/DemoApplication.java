@@ -2,9 +2,8 @@
 
     import com.ProjetJ2EE.ProjetJ2EE.entities.Account;
     import com.ProjetJ2EE.ProjetJ2EE.entities.Game;
-    import com.ProjetJ2EE.ProjetJ2EE.entities.User;
+    import com.ProjetJ2EE.ProjetJ2EE.repositories.AccountRepository;
     import com.ProjetJ2EE.ProjetJ2EE.repositories.GameRepository;
-    import com.ProjetJ2EE.ProjetJ2EE.repositories.UserRepository;
     import com.ProjetJ2EE.ProjetJ2EE.services.AccountService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Controller;
@@ -21,7 +20,7 @@
         private GameRepository gameRepository;
 
         @Autowired
-        private UserRepository userRepository;
+        private AccountRepository accountRepository;
 
         @Autowired
         public DemoApplication(AccountService accountService) {
@@ -67,7 +66,7 @@
             List<Game> games = gameRepository.findAll();
             model.addAttribute("games", games);
 
-            List<User> coaches = userRepository.findByUserType("C");
+            List<Account> coaches = accountRepository.findByusertype("C");
             model.addAttribute("coaches", coaches);
             return "main";
         }

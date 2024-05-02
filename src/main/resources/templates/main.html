@@ -484,8 +484,6 @@
 </section>
 
 <section data-bs-version="5.1" class="people03 cid-ubqZdXMBY2" id="team-1-ubqZdXMBY2">
-
-
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12 content-head">
@@ -493,74 +491,25 @@
                     <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
                         <strong>Game Masters</strong>
                     </h4>
-
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="item features-image col-12 col-md-6 col-lg-3">
+            <!-- Iterate over the list of coaches -->
+            <div th:each="coach : ${coaches}" class="item features-image col-12 col-md-6 col-lg-3">
                 <div class="item-wrapper">
-                    <div class="item-img mb-3">
-                        <img th:src="@{/assets/images/photo-1530882548122-0596ee66cdfd.jpeg}" alt="Mobirise Website Builder" title="">
-                    </div>
                     <div class="item-content align-left">
                         <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Max</strong>
+                            <strong th:text="${coach.username}">Coach Name</strong>
                         </h5>
-                        <h6 class="item-subtitle mbr-fonts-style mb-3 display-7">Chief Gaming Officer</h6>
-
+                        <h6 class="item-subtitle mbr-fonts-style mb-3 display-7" th:text="${coach.gameCount} + ' Games Played'"></h6>
                     </div>
-
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-3">
-                <div class="item-wrapper">
-                    <div class="item-img mb-3">
-                        <img th:src="@{/assets/images/photo-1598992616139-5ed3d0fa4eeb.jpeg}" alt="Mobirise Website Builder" title="">
-                    </div>
-                    <div class="item-content align-left">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Aria</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style mb-3 display-7">Digital Wizard</h6>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-3">
-                <div class="item-wrapper">
-                    <div class="item-img mb-3">
-                        <img th:src="@{/assets/images/photo-1492288991661-058aa541ff43.jpeg}" alt="Mobirise Website Builder" title="">
-                    </div>
-                    <div class="item-content align-left">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Leo</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style mb-3 display-7">Pixel Ninja</h6>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="item features-image col-12 col-md-6 col-lg-3">
-                <div class="item-wrapper">
-                    <div class="item-img mb-3">
-                        <img th:src="@{/assets/images/photo-1589571739149-47ed80eae6ba.jpeg}" alt="Mobirise Website Builder" title="" data-slide-to="3" data-bs-slide-to="3">
-                    </div>
-                    <div class="item-content align-left">
-                        <h5 class="item-title mbr-fonts-style display-5">
-                            <strong>Zara</strong>
-                        </h5>
-                        <h6 class="item-subtitle mbr-fonts-style mb-3 display-7">Virtual Sorceress</h6>
-
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section data-bs-version="5.1" class="people05 cid-ubqZdXMQ2y" id="testimonials-5-ubqZdXMQ2y">
 

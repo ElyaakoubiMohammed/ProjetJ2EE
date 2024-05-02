@@ -30,7 +30,7 @@ public class Account
     private String LastName;
     private int Age;
     private String Gender;
-    private String UserType;
+    private String usertype;
 
 
 
@@ -47,7 +47,7 @@ public class Account
                 ", LastName='" + LastName + '\'' +
                 ", Age=" + Age +
                 ", Gender='" + Gender + '\'' +
-                ", UserType='" + UserType + '\'' +
+                ", UserType='" + usertype + '\'' +
                 '}';
     }
 }
