@@ -46,12 +46,10 @@
         @PostMapping("/register")
         public String register(@ModelAttribute Account account, Model model) {
             if (!accountService.addAccount(account.getEmail(), account.getPassword(), account.getUsername(), account.getCountry(), account.getFirstName(), account.getLastName(), account.getAge(), account.getGender())) {
-                // If email or username already exists, add an attribute to indicate the error
                 model.addAttribute("error", "Email or username already exists");
-                // Return the register page
-                return "register"; // Assuming your register page is named "register"
+                return "register";
             }
-            // If account added successfully, redirect to another page
+
             return "redirect:/main";
         }
 
