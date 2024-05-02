@@ -102,22 +102,31 @@
 
         @GetMapping("/game-details/{id}")
         public String showGameDetails(@PathVariable("id") Long id, Model model) {
-            // Retrieve game details from the database using the game ID
             Game game = gameRepository.findById(id).orElse(null);
 
             if (game != null) {
+                // Ensure that the categorie object is loaded
+                game.getCategorie();
+                game.getMinSpecs();
+                game.getRecSpecs();// This should trigger the lazy loading if necessary
+
                 List<Image> images = game.getImages();
                 images.forEach(image -> {
                     String base64Image = bytesToBase64(image.getImage());
                     image.setPictureBase64(base64Image);
                 });
 
+                // Accessing the categorieType property
+                String categorieType = game.getCategorie().getCategorieType();
+                // You can do something with the categorieType here, like adding it to the model
+                model.addAttribute("categorieType", categorieType);
+
                 model.addAttribute("game", game);
                 return "game-details";
             } else {
-
                 return "error";
             }
         }
+
 
     }
