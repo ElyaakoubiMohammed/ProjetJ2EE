@@ -56,7 +56,7 @@
                 </ul>
 
                 <div class="navbar-buttons mbr-section-btn">
-                    <a class="btn btn-primary display-4" href="https://mobiri.se">Join Now</a>
+                    <a class="btn btn-primary display-4" href="/register">Join Now</a>
                 </div>
             </div>
         </div>
@@ -135,8 +135,10 @@
                             <strong th:text="${game.gameName}">Game Name</strong>
                         </h5>
                         <h6 class="item-subtitle mbr-fonts-style display-7">
-                            <span th:text="${game.prix}">$00.00</span>
+                            <span th:if="${game.prix > 0}" th:text="'$' + ${game.prix} + '0'"></span>
+                            <span th:if="${game.prix == 0}">Free</span>
                         </h6>
+
                         <p class="mbr-text mbr-fonts-style display-7">
                             <span th:text="${game.description}">Game Description</span>
                         </p>
@@ -505,6 +507,11 @@
             <div th:each="coach : ${coaches}" class="item features-image col-12 col-md-6 col-lg-3">
                 <div class="item-wrapper">
                     <div class="item-content align-left">
+                        <!-- Check if coach has an image -->
+                        <div th:if="${coach.pictureBase64 != null}">
+                            <!-- Display coach image -->
+                            <img th:src="'data:image/jpeg;base64,' + ${coach.pictureBase64}" alt="Coach Image"/>
+                        </div>
                         <h5 class="item-title mbr-fonts-style display-5">
                             <strong th:text="${coach.username}">Coach Name</strong>
                         </h5>
@@ -515,6 +522,7 @@
         </div>
     </div>
 </section>
+
 
 
 <section data-bs-version="5.1" class="people05 cid-ubqZdXMQ2y" id="testimonials-5-ubqZdXMQ2y">

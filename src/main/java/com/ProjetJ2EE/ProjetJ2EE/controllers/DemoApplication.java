@@ -80,13 +80,20 @@
             games.forEach(game -> {
                 List<Image> images = game.getImages();
                 images.forEach(image -> {
-                    String base64Image = bytesToBase64(image.getImage()); // Assuming you have a method to convert bytes to Base64
+                    String base64Image = bytesToBase64(image.getImage());
                     image.setPictureBase64(base64Image);
                 });
             });
             model.addAttribute("games", games);
 
             List<Account> coaches = accountRepository.findByusertype("C");
+            coaches.forEach(coach -> {
+                byte[] coachImage = coach.getImage();
+                if (coachImage != null) {
+                    String base64Image = bytesToBase64(coachImage);
+                    coach.setPictureBase64(base64Image);
+                }
+            });
             model.addAttribute("coaches", coaches);
 
             return "main";

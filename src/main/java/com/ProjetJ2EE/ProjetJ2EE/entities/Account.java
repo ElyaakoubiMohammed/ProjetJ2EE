@@ -1,9 +1,6 @@
 package com.ProjetJ2EE.ProjetJ2EE.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +28,11 @@ public class Account
     private int Age;
     private String Gender;
     private String usertype;
+
+    @Lob
+    @Column(name = "Pimage", columnDefinition = "LONGBLOB")
+    private byte[] image;
+    private String PictureBase64;
 
 
 
