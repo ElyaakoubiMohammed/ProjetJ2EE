@@ -105,10 +105,9 @@
             Game game = gameRepository.findById(id).orElse(null);
 
             if (game != null) {
-                // Ensure that the categorie object is loaded
                 game.getCategorie();
                 game.getMinSpecs();
-                game.getRecSpecs();// This should trigger the lazy loading if necessary
+                game.getRecSpecs();
 
                 List<Image> images = game.getImages();
                 images.forEach(image -> {
@@ -116,9 +115,7 @@
                     image.setPictureBase64(base64Image);
                 });
 
-                // Accessing the categorieType property
                 String categorieType = game.getCategorie().getCategorieType();
-                // You can do something with the categorieType here, like adding it to the model
                 model.addAttribute("categorieType", categorieType);
 
                 model.addAttribute("game", game);
@@ -127,6 +124,9 @@
                 return "error";
             }
         }
-
+        @RequestMapping("/profilepic")
+        public String Profilepic() {
+            return "profilepic";
+        }
 
     }

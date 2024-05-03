@@ -1,70 +1,141 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Details</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Card/Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Check your CSS link here -->
+    <link rel="stylesheet" th:href="@{/gamedetails/style.css}"> <!-- Adjust the href as needed -->
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Game Details Styles */
-        .game-details {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
-
-        .game-image {
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .game-title {
-            font-size: 2.5em;
-            margin-top: 20px;
-            color: #007bff;
-        }
-
-        .game-description {
-            font-size: 1.2em;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .game-price {
-            font-size: 1.5em;
-            margin-top: 20px;
-            color: #28a745;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 <body>
-<div class="container">
-    <div class="game-details">
-        <img class="game-image" th:src="'data:image/jpeg;base64,' + ${game.images[0].pictureBase64}" alt="Game Image">
-        <h2 class="game-title" th:text="${game.gameName}">Game Name</h2>
-        <p class="game-description" th:text="${game.description}">Game Description</p>
-        <p class="game-price" th:text="'$' + ${game.prix}">Price</p>
+
+<div class="card-wrapper">
+    <div class="card">
+        <!-- card left -->
+        <div class="product-imgs">
+            <div class="img-display">
+                <div class="img-showcase">
+                    <!-- Only display the first image initially -->
+                    <img th:src="'data:image/jpeg;base64,' + ${game.images[0].pictureBase64}" alt="shoe image" id="main-image">
+                </div>
+            </div>
+            <div class="img-select">
+                <!-- Iterate through game images for thumbnail selection -->
+                <div th:each="image, iterStat : ${game.images}" class="img-item">
+                    <a href="#" th:data-id="${iterStat.index}" class="img-link">
+                        <img th:src="'data:image/jpeg;base64,' + ${image.pictureBase64}" alt="shoe image">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- card right -->
+        <div class="product-content">
+            <h2 class="product-title" th:text="${game.gameName}">Game Name</h2>
+            <div class="product-rating">
+                <span th:if="${game.rating > 0}">
+        <span th:each="i : ${#numbers.sequence(1, game.rating)}">
+            <i class="fas fa-star" style="color: gold;"></i>
+        </span>
+        <span th:if="${game.rating % 1 != 0}">
+            <i class="fas fa-star-half-alt" style="color: gold;"></i>
+        </span>
+        <span th:if="${game.rating < 5}">
+            <span th:each="i : ${#numbers.sequence(1, 5 - game.rating)}">
+                <i class="far fa-star" style="color: #ccc;"></i>
+            </span>
+        </span>
+    </span>
+                <span th:if="${game.rating == 0}">
+        <span th:each="i : ${#numbers.sequence(1, 5)}">
+            <i class="far fa-star" style="color: #ccc;"></i>
+        </span>
+    </span>
+                <span th:text="${game.rating}"></span>
+            </div>
+
+            <div class="product-price">
+                <span th:if="${game.prix > 0}" th:text="'$' + ${game.prix} + '0'"></span>
+                <span th:if="${game.prix == 0}">Free</span>            </div>
+
+            <div class="product-detail">
+                <h2>about this item: </h2>
+                <p class="game-description" th:text="${game.description}">Game Description</p>
+                <ul>
+                    <li>Genre : <span th:text="${game.categorie.categorieType}">Black</span></li>
+                    <li>Release date: <span th:text="${#dates.format(game.publishDate, 'dd MMM, yyyy')}">in stock</span></li>
+                    <div style="display: flex;">
+                        <div style="flex: 1;">
+                            <h2>Minimum Requirements:</h2>
+                            <ul>
+                                <li>Operating System: <span th:text="${game.minSpecs.operatingSystem}"></span></li>
+                                <li>Processor: <span th:text="${game.minSpecs.processor}"></span></li>
+                                <li>GPU: <span th:text="${game.minSpecs.GPU}"></span></li>
+                                <li>Memory: <span th:text="${game.minSpecs.memory} + 'GB'"></span></li>
+                                <li>Storage: <span th:text="${game.minSpecs.storage} + 'GB'"></span></li>
+                            </ul>
+                        </div>
+                        <div style="flex: 1;">
+                            <h2>Recommended Requirements:</h2>
+                            <ul>
+                                <li>Operating System: <span th:text="${game.recSpecs.operatingSystem}"></span></li>
+                                <li>Processor: <span th:text="${game.recSpecs.processor}"></span></li>
+                                <li>GPU: <span th:text="${game.recSpecs.GPU}"></span></li>
+                                <li>Memory: <span th:text="${game.recSpecs.memory} + 'GB'"></span></li>
+                                <li>Storage: <span th:text="${game.recSpecs.storage} + 'GB'"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                </ul>
+            </div>
+
+            <div class="purchase-info">
+                <button type="button" class="btn" style="margin-left: 20px">
+                    Add to Cart <i class="fas fa-shopping-cart"></i>
+                </button>
+            </div>
+
+            <div class="social-links">
+                <p>Share At: </p>
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-pinterest"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainImage = document.getElementById('main-image');
+        const thumbnails = document.querySelectorAll('.img-select .img-link');
+
+        thumbnails.forEach(function(thumbnail) {
+            thumbnail.addEventListener('click', function(event) {
+                event.preventDefault();
+                const thumbnailImage = thumbnail.querySelector('img');
+                mainImage.src = thumbnailImage.src; // Update the main image source
+            });
+        });
+    });
+
+</script>
+<script th:src="@{/game-details/script.js}"></script>
 </body>
 </html>
