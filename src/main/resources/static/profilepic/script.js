@@ -35,30 +35,55 @@ var isAdvancedUpload = function() {
       progressBar.style.width = 0;
       fileFlag = 0;
   });
-  
-  uploadButton.addEventListener("click", () => {
-      let isFileUploaded = fileInput.value;
-      if(isFileUploaded != '') {
-          if (fileFlag == 0) {
-              fileFlag = 1;
-              var width = 0;
-              var id = setInterval(frame, 50);
-              function frame() {
-                    if (width >= 390) {
-                      clearInterval(id);
-                      uploadButton.innerHTML = `<span class="material-icons-outlined upload-button-icon"> check_circle </span> Uploaded`;
-                    } else {
-                      width += 5;
-                      progressBar.style.width = width + "px";
-                    }
-              }
+
+uploadButton.addEventListener("click", () => {
+    let isFileUploaded = fileInput.value;
+    if (isFileUploaded != '') {
+        if (fileFlag == 0) {
+            fileFlag = 1;
+            var width = 0;
+            var id = setInterval(frame, 50);
+            function frame() {
+                if (width >= 390) {
+                    clearInterval(id);
+                    uploadButton.innerHTML = `<span class="material-icons-outlined upload-button-icon"> check_circle </span> Uploaded`;
+                } else {
+                    width += 5;
+                    progressBar.style.width = width + "px";
+                }
             }
-      } else {
-          cannotUploadMessage.style.cssText = "display: flex; animation: fadeIn linear 1.5s;";
-      }
-  });
-  
-  cancelAlertButton.addEventListener("click", () => {
+
+            // Create FormData object
+            let formData = new FormData();
+            formData.append('email', 'example@email.com'); // Replace with actual email value
+            formData.append('profilePicture', fileInput.files[0]);
+
+            // Send FormData to server using AJAX
+            fetch('/profilepic', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    console.log(data); // Log server response
+                    // Redirect or perform other actions based on server response
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                    // Handle error
+                });
+        }
+    } else {
+        cannotUploadMessage.style.cssText = "display: flex; animation: fadeIn linear 1.5s;";
+    }
+});
+
+cancelAlertButton.addEventListener("click", () => {
       cannotUploadMessage.style.cssText = "display: none;";
   });
   

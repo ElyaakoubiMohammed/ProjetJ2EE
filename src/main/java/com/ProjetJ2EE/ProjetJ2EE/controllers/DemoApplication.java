@@ -7,13 +7,17 @@
     import com.ProjetJ2EE.ProjetJ2EE.repositories.GameRepository;
     import com.ProjetJ2EE.ProjetJ2EE.repositories.ImageRepository;
     import com.ProjetJ2EE.ProjetJ2EE.services.AccountService;
+    import org.apache.catalina.connector.ClientAbortException;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.*;
+    import org.springframework.web.multipart.MultipartFile;
 
+    import java.io.IOException;
     import java.util.Base64;
     import java.util.List;
+    import java.util.Optional;
 
     @Controller
     public class DemoApplication {
@@ -50,7 +54,7 @@
                 return "register";
             }
 
-            return "redirect:/main";
+            return "redirect:/profilepic";
         }
 
         @GetMapping("/login")
@@ -92,7 +96,9 @@
                     coach.setPictureBase64(base64Image);
                 }
             });
+
             model.addAttribute("coaches", coaches);
+
 
             return "main";
         }
@@ -128,5 +134,60 @@
         public String Profilepic() {
             return "profilepic";
         }
+
+        @PostMapping("/profilepic")
+        public String addPicture(@RequestParam String email, @RequestParam("profilePicture") MultipartFile profilePicture) {
+            try {
+                if (profilePicture.isEmpty()) {
+                    return "redirect:/profilepic?error=file";
+                }
+
+                // Fetch the account associated with the email
+                Optional<Account> optionalAccount = accountRepository.findByEmail(email);
+                if (optionalAccount.isEmpty()) {
+                    return "redirect:/profilepic?error=accountNotFound";
+                }
+
+                Account account = optionalAccount.get();
+                byte[] picture = profilePicture.getBytes();
+                account.setImage(picture);
+
+                // Update the account picture
+                accountService.addPicture(email, profilePicture);
+            } catch (ClientAbortException e) {
+                // Handle the ClientAbortException here
+                // For example, you can log the exception
+                // logger.error("ClientAbortException occurred: " + e.getMessage());
+                return "redirect:/profilepic?error=clientAbortException";
+            } catch (IOException e) {
+                // Handle other IO exceptions here
+                // For example, you can log the exception
+                // logger.error("IOException occurred: " + e.getMessage());
+                e.printStackTrace();
+                return "redirect:/profilepic?error=file";
+            }
+            return "redirect:/main";
+        }
+
+
+
+        @GetMapping("/userslist")
+        public String usersList(Model model) {
+            List<Account> users = accountRepository.findAll();
+
+            users.forEach(user -> {
+                byte[] userImage = user.getImage();
+                if (userImage != null) {
+                    String base64Image = bytesToBase64(userImage);
+                    user.setPictureBase64(base64Image);
+                }
+            });
+
+            model.addAttribute("users", users);
+            return "userslist";
+        }
+
+
+
 
     }

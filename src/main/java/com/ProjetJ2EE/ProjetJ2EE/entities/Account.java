@@ -34,7 +34,7 @@ public class Account
     private byte[] image;
     private String PictureBase64;
 
-
-
-
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }

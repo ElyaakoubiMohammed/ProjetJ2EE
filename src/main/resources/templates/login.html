@@ -35,7 +35,7 @@
             flex: 1;
             background-color: black;
             transition: 1s;
-            background-image: url("/register/images/register.jpg");
+            /*background-image: url("/register/images/register2.png");*/
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -166,13 +166,45 @@
             <div class="form">
                 <input type="email" name="email" class="form-field animation a3" placeholder="Email Address">
                 <input type="password" name="password" class="form-field animation a4" placeholder="Password">
-                <p class="animation a5"><a href="#">Forgot Password</a></p>
+                <p class="animation a5"><a href="/register">Need an account?</a></p>
                 <button type="submit" class="animation a6">LOGIN</button>
             </div>
         </form>
     </div>
     <div class="right"></div>
 </div>
+    <script>
 
+
+        var imageUrls = [
+            "/register/images/register.jpg",
+            "/register/images/register2.png",
+            "/register/images/register3.jpg",
+            "/register/images/register4.jpg",
+            "/register/images/register5.jpg",
+            "/register/images/register6.jpg",
+            "/register/images/register7.gif"
+        ];
+
+        // Function to get a random image URL from the array
+        function getRandomImageUrl() {
+            var randomIndex = Math.floor(Math.random() * imageUrls.length);
+            return imageUrls[randomIndex];
+        }
+
+        // Function to set a random background image to the element with class "right"
+        function setRandomBackgroundImage() {
+            var rightElement = document.querySelector('.right');
+            var randomImageUrl = getRandomImageUrl();
+            rightElement.style.backgroundImage = "url('" + randomImageUrl + "')";
+        }
+
+        // Call the function to set the initial random background image
+        setRandomBackgroundImage();
+
+        // Optional: Call the function at a specified interval to change the background image periodically
+        // setInterval(setRandomBackgroundImage, 5000); // Change image every 5 seconds, for example
+
+    </script>
 </body>
 </html>

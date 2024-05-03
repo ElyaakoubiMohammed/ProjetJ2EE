@@ -5,6 +5,14 @@
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.jdbc.core.JdbcTemplate;
     import org.springframework.stereotype.Service;
+    import org.springframework.transaction.annotation.Transactional;
+    import org.springframework.util.StringUtils;
+    import org.springframework.web.multipart.MultipartFile;
+
+    import java.io.IOException;
+    import java.util.Base64;
+    import java.util.Objects;
+    import java.util.Optional;
 
 
     @Service
@@ -42,6 +50,26 @@
             int count = jdbcTemplate.queryForObject(query, Integer.class, email, password);
 
             return count > 0;
+        }
+
+        @Transactional
+        public boolean addPicture(String email, MultipartFile profilePicture) throws IOException {
+                Optional<Account> optionalAccount = accountRepository.findByEmail(email);
+            if (optionalAccount.isEmpty()) {
+                return false;
+            }
+
+            Account account = optionalAccount.get();
+
+            if (profilePicture != null && !profilePicture.isEmpty()) {
+                account.setImage(profilePicture.getBytes());
+                account.setPictureBase64(Base64.getEncoder().encodeToString(profilePicture.getBytes()));
+
+                accountRepository.save(account);
+                return true;
+            }
+
+            return false;
         }
     }
 
