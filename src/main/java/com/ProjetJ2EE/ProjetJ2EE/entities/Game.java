@@ -46,5 +46,9 @@ public class Game {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "image_image_id")
+    private Image image;
+
 
 }

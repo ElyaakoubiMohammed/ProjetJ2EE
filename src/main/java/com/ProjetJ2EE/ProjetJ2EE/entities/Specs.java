@@ -78,16 +78,5 @@ public class Specs
         Storage = storage;
     }
 
-    @Override
-    public String toString() {
-        return "Specs{" +
-                "SpecsId=" + SpecsId +
-                ", OperatingSystem='" + OperatingSystem + '\'' +
-                ", Processor='" + Processor + '\'' +
-                ", GPU='" + GPU + '\'' +
-                ", Memory=" + Memory +
-                ", Storage=" + Storage +
-                '}';
-    }
 }
 

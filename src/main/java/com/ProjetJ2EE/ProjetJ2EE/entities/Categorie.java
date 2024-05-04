@@ -26,4 +26,10 @@ public class Categorie
     public String getCategorieType() {
         return categorieType;
     }
+    public void setCategorieId(Long id)
+    {
+        this.CategorieId = id;
+    }
 }
+
+

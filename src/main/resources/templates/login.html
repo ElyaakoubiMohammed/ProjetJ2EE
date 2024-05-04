@@ -189,18 +189,14 @@
             return imageUrls[randomIndex];
         }
 
-        // Function to set a random background image to the element with class "right"
         function setRandomBackgroundImage() {
             var rightElement = document.querySelector('.right');
             var randomImageUrl = getRandomImageUrl();
             rightElement.style.backgroundImage = "url('" + randomImageUrl + "')";
         }
 
-        // Call the function to set the initial random background image
         setRandomBackgroundImage();
 
-        // Optional: Call the function at a specified interval to change the background image periodically
-        // setInterval(setRandomBackgroundImage, 5000); // Change image every 5 seconds, for example
 
     </script>
 </body>

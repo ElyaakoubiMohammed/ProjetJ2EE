@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Image
 {
@@ -25,11 +24,11 @@ public class Image
     private byte[] image;
     private String PictureBase64;
 
-    @Override
-    public String toString() {
-        return "Image{" +
-                "ImageId=" + ImageId +
-                ", game=" + game +
-                '}';
+    @Builder
+    public Image(Long imageId, Game game, byte[] image, String PictureBase64) {
+        this.ImageId = imageId;
+        this.game = game;
+        this.image = image;
+        this.PictureBase64 = PictureBase64;
     }
 }

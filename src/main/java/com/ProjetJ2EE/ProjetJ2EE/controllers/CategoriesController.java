@@ -37,9 +37,7 @@ public class CategoriesController
 
         Categorie categorie = categorieRepository.findByCategorieType(categoryName);
 
-
-            // Retrieve games associated with the category
-            List<Game> games = gameRepository.findByCategorie(categorie);
+         List<Game> games = gameRepository.findByCategorie(categorie);
 
             games.forEach(game -> {
                 List<Image> images = game.getImages();
@@ -52,7 +50,6 @@ public class CategoriesController
 
         return "categories";
     }
-
 
     public String bytesToBase64(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);

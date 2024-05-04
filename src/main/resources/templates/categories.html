@@ -33,7 +33,11 @@
             <div class="content">
                     <div class="name" th:text="${game.gameName}">Game Name</div>
                     <div class="des" th:text="${game.description}">Game Description</div>
-                    <button th:href="@{'/game-details/' + ${game.gameId}}" class="button">See more</button>
+                    <div class="des">
+                        <span th:if="${game.prix > 0}" th:text="'$' + ${game.prix} + '0'"></span>
+                        <span th:if="${game.prix == 0}">Free</span>
+                    </div>
+                    <a th:href="@{'/game-details/' + ${game.gameId}}" class="button">See more</a>
                 </div>
             </div>
         </div>
