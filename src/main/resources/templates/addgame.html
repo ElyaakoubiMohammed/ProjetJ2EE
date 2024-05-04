@@ -3,31 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <title>Game Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            height: 100vh;
+        }
+
+        #form-container {
+            display: flex; /* Use flexbox */
+            justify-content: space-between; /* Space between columns */
+            max-width: 800px; /* Increase max width */
+            width: 100%;
+            animation: slideInDown 0.5s ease;
+        }
+
+        .form-column {
+            flex: 1; /* Take up equal space */
+            padding: 0 10px; /* Add some padding */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        textarea,
+        select,
+        input[type="file"],
+        input[type="submit"] {
+            width: calc(100% - 20px); /* Take up width minus padding */
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        select:focus,
+        input[type="file"]:focus {
+            border-color: dodgerblue;
+        }
+
+        input[type="submit"] {
+            background-color: dodgerblue;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #007bff;
+        }
+    </style>
 </head>
 <body>
-<h2>Add New Game</h2>
-<form th:action="@{/addgame}" method="post" enctype="multipart/form-data">
-    <label for="gameName">Game Name:</label>
-    <input type="text" id="gameName" name="gameName"><br><br>
+<div id="form-container" class="animate__animated animate__slideInDown">
+    <div class="form-column">
+        <h2>Add New Game</h2>
+        <form th:action="@{/addgame}" method="post" enctype="multipart/form-data">
+            <label for="gameName">Game Name:</label>
+            <input type="text" id="gameName" name="gameName"><br><br>
 
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="30"></textarea><br><br>
 
-    <label for="publishDate">Publish Date:</label>
-    <input type="date" id="publishDate" name="publishDate"><br><br>
+            <label for="publishDate">Publish Date:</label>
+            <input type="date" id="publishDate" name="publishDate"><br><br>
 
-    <label for="categoryName">Category:</label>
-    <select id="categoryName" name="categoryName">
-        <option value="action">Action</option>
-        <option value="adventure">Adventure</option>
-        <option value="horror">Horror</option>
-        <option value="openworld">Open World</option>
-    </select><br><br>
+            <label for="categoryName">Category:</label>
+            <select id="categoryName" name="categoryName">
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="horror">Horror</option>
+                <option value="openworld">Open World</option>
+            </select><br><br>
 
+            <label for="prix">Price:</label>
+            <input type="number" id="prix" name="prix" step="0.01" min="0"><br><br>
+    </div>
+</div>
+<div class="form-column">
+    <!-- Minimum Specifications -->
+    <h3>Minimum Specifications:</h3>
+    <label for="minOperatingSystem">Operating System:</label>
+    <input type="text" id="minOperatingSystem" name="minOperatingSystem"><br><br>
+
+    <label for="minProcessor">Processor:</label>
+    <input type="text" id="minProcessor" name="minProcessor"><br><br>
+
+    <label for="minGPU">GPU:</label>
+    <input type="text" id="minGPU" name="minGPU"><br><br>
+
+    <label for="minMemory">Memory (GB):</label>
+    <input type="number" id="minMemory" name="minMemory"><br><br>
+
+    <label for="minStorage">Storage (GB):</label>
+    <input type="number" id="minStorage" name="minStorage"><br><br>
+
+    <!-- Recommended Specifications -->
+    <h3>Recommended Specifications:</h3>
+    <label for="recOperatingSystem">Operating System:</label>
+    <input type="text" id="recOperatingSystem" name="recOperatingSystem"><br><br>
+
+    <label for="recProcessor">Processor:</label>
+    <input type="text" id="recProcessor" name="recProcessor"><br><br>
+
+    <label for="recGPU">GPU:</label>
+    <input type="text" id="recGPU" name="recGPU"><br><br>
+
+    <label for="recMemory">Memory (GB):</label>
+    <input type="number" id="recMemory" name="recMemory"><br><br>
+
+    <label for="recStorage">Storage (GB):</label>
+    <input type="number" id="recStorage" name="recStorage"><br><br>
+
+    <!-- Profile Picture -->
     <label for="file">Profile Picture:</label>
     <input type="file" id="file" name="imageFile" accept="image/*">
     <br><br>
     <input type="submit" value="Submit">
-</form>
+    </form>
+</div>
+</div>
 </body>
 </html>

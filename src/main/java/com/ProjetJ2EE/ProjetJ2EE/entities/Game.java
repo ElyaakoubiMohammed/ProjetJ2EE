@@ -21,9 +21,7 @@ public class Game {
     private Long gameId;
     private String gameName;
     private double prix;
-    private boolean promo;
     private String description;
-    private int pourcentagePromo;
     private int rating;
     private Date publishDate;
 

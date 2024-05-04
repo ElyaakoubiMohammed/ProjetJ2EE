@@ -31,15 +31,11 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
-    @GetMapping("/pay/{id}")
-    public String pay(@PathVariable("id") Long id, Model model) {
-        Game game = gameRepository.findById(id).orElse(null);
-        if (game != null) {
-            model.addAttribute("game", game);
+    @GetMapping("/pay")
+    public String pay( Model model) {
+
             return "payment";
-        } else {
-            return "error";
-        }
+
     }
 
     @RequestMapping("/addgame")
@@ -51,13 +47,27 @@ public class GameController {
     public String addGame(
             @RequestParam("gameName") String gameName,
             @RequestParam("description") String description,
-            @RequestParam("publishDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date publishDate,
+            @RequestParam("publishDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date publishDate,
             @RequestParam("imageFile") MultipartFile imageFile,
-            @RequestParam("categoryName") String categoryName) throws IOException {
+            @RequestParam("categoryName") String categoryName,
+            @RequestParam("minOperatingSystem") String minOperatingSystem,
+            @RequestParam("minProcessor") String minProcessor,
+            @RequestParam("minGPU") String minGPU,
+            @RequestParam("minMemory") int minMemory,
+            @RequestParam("minStorage") int minStorage,
+            @RequestParam("recOperatingSystem") String recOperatingSystem,
+            @RequestParam("recProcessor") String recProcessor,
+            @RequestParam("recGPU") String recGPU,
+            @RequestParam("recMemory") int recMemory,
+            @RequestParam("recStorage") int recStorage,
+            @RequestParam("prix") double prix) throws IOException {
 
-        gameService.addGame(gameName, description, publishDate, imageFile, categoryName);
+        gameService.addGame(gameName, description, publishDate, imageFile, categoryName,
+                minOperatingSystem, minProcessor, minGPU, minMemory, minStorage,
+                recOperatingSystem, recProcessor, recGPU, recMemory, recStorage, prix);
         return "redirect:/main";
     }
+
 
 
 

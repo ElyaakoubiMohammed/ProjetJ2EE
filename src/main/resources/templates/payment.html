@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-
     <link th:href="@{/payment/style.css}" rel="stylesheet">
-
 </head>
 <body>
 <div id="card-success" class="hidden">
@@ -18,17 +16,13 @@
     <p id="card-error">Card error</p>
 </div>
 <div id="form-container" style="margin-top: 200px">
-
     <div id="card-front">
         <div id="shadow"></div>
         <div id="image-container">
-
-      <span id="card-image">
-
-        </span>
+            <span id="card-image">
+            </span>
         </div>
         <!--- end card image container --->
-
         <label for="card-number">
             Card Number
         </label>
@@ -58,16 +52,18 @@
     <div id="card-back">
         <div id="card-stripe">
         </div>
-
         <div>
             <label for="card-token"></label><input type="text" id="card-token" />
             <!-- Use JavaScript to navigate when button is clicked -->
             <button type="button" id="card-btn" onclick="window.location.href='/main'">Submit</button>
         </div>
+    </div>
+</div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script src="https://use.fontawesome.com/f1e0bf0cbc.js"></script>
+<script th:src="@{/payment/script.js}"></script>
 
 </body>
 </html>

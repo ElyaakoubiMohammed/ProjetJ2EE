@@ -243,23 +243,29 @@ nav ul li a:hover {
     display: block;
     z-index: 11111;
 }
-.item .name{
+.item .name {
     font-size: 40px;
     font-weight: bold;
     opacity: 0;
-    animation:showcontent 1s ease-in-out 1 forwards
+    animation: showcontent 1s ease-in-out 1 forwards;
+    color: blue; /* Add this line to change the color to blue */
 }
-.item .des{
-    margin:20px 0;
+
+.item .des {
+    margin: 20px 0;
     opacity: 0;
-    animation:showcontent 1s ease-in-out 0.3s 1 forwards
+    animation: showcontent 1s ease-in-out 0.3s 1 forwards;
+    color: blue; /* Add this line to change the color to blue */
 }
-.item button{
-    padding:10px 20px;
-    border:none;
+
+.item button {
+    padding: 10px 20px;
+    border: none;
     opacity: 0;
-    animation:showcontent 1s ease-in-out 0.6s 1 forwards
+    animation: showcontent 1s ease-in-out 0.6s 1 forwards;
+    color: blue; /* Add this line to change the color to blue */
 }
+
 @keyframes showcontent{
     from{
         opacity: 0;
