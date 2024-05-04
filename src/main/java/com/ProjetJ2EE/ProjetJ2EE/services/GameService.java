@@ -76,7 +76,6 @@ public class GameService {
                 categorie.setCategorieId(4L);
                 break;
             default:
-                // Handle invalid category
                 break;
         }
 
