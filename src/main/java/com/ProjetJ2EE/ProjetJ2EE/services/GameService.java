@@ -1,9 +1,7 @@
 package com.ProjetJ2EE.ProjetJ2EE.services;
 
-import com.ProjetJ2EE.ProjetJ2EE.entities.Categorie;
-import com.ProjetJ2EE.ProjetJ2EE.entities.Game;
-import com.ProjetJ2EE.ProjetJ2EE.entities.Image;
-import com.ProjetJ2EE.ProjetJ2EE.entities.Specs;
+import com.ProjetJ2EE.ProjetJ2EE.entities.*;
+import com.ProjetJ2EE.ProjetJ2EE.repositories.AccountRepository;
 import com.ProjetJ2EE.ProjetJ2EE.repositories.GameRepository;
 import com.ProjetJ2EE.ProjetJ2EE.repositories.ImageRepository;
 import com.ProjetJ2EE.ProjetJ2EE.repositories.SpecsRepository; // Add this import
@@ -25,7 +23,10 @@ public class GameService {
     private ImageRepository imageRepository;
 
     @Autowired
-    private SpecsRepository specsRepository; // Autowire the Specs repository
+    private SpecsRepository specsRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Transactional
     public void addGame(String gameName, String description, Date publishDate, MultipartFile imageFile, String categoryName,
@@ -97,4 +98,20 @@ public class GameService {
             imageRepository.save(image);
         }
     }
+    @Transactional
+    public void addGameToCart(Long gameId, Long accountId) {
+        Game game = gameRepository.findById(gameId).orElse(null);
+        Account account = accountRepository.findById(accountId).orElse(null);
+
+        if (game != null && account != null) {
+            // Increment the GameCount for the account
+            account.setGameCount(account.getGameCount() + 1);
+            accountRepository.save(account);
+        } else {
+            // Handle the case where either the game or account is not found
+            // You can throw an exception, log an error, or handle it as appropriate for your application
+        }
+    }
+
+
 }

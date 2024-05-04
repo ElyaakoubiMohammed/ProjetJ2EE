@@ -38,11 +38,6 @@
             this.accountService = accountService;
         }
 
-        @RequestMapping("/index")
-        public String index() {
-            return "index";
-        }
-
         @GetMapping("/register")
         public String showRegistrationForm() {
             return "register";
