@@ -1,0 +1,360 @@
+body{
+    background-color: #eaeaea;
+    overflow: hidden;
+}
+.container{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:950px;
+    height:300px;
+    padding:50px;
+    background-color: #f5f5f5;
+    box-shadow: 0 30px 50px #dbdbdb;
+}
+
+/* header*/
+/* Styles spécifiques au header */
+/* Styles spécifiques au header */
+/* Styles spécifiques au header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden; /* Pour clearfix */
+    border-bottom: 2px solid #ffb320; /* Bordure inférieure */
+    border-radius: 0 0 50% 50%; /* Coins inférieurs en forme de demi-cercle */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    float: right; /* Placer les liens à droite */
+    margin-top: 10px; /* Ajuster la marge supérieure */
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px; /* Ajuster la marge à gauche */
+    margin-right: 20px; /* Ajuster la marge à droite */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px; /* Ajuster le rembourrage */
+}
+
+nav ul li a:hover {
+    color: #ffb320;
+}
+
+.logo {
+    float: left; /* Placer le logo à gauche */
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffb320;
+    text-transform: uppercase;
+    margin-right: 30px; /* Laisser un peu d'espace à droite du logo */
+    line-height: 50px; /* Centrer verticalement le texte dans le header */
+}
+
+
+/* Effet de feu */
+/*.fire {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #ff0000 10%, transparent 70%);
+    border-radius: 50%;
+    animation: flame 1s infinite alternate-reverse;
+}
+
+.top-left {
+    top: -25px;
+    left: -25px;
+}
+
+.top-right {
+    top: -25px;
+    right: -25px;
+}
+
+.bottom-left {
+    bottom: -25px;
+    left: -25px;
+}
+
+.bottom-right {
+    bottom: -25px;
+    right: -25px;
+}
+
+@keyframes flame {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}*/
+/*.fire {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    background:
+            radial-gradient(circle at 20% 100%, #ff7e00 10%, transparent 30%) 0 0,
+            radial-gradient(circle at 50% 100%, #ff7e00 10%, transparent 30%) 40px 0,
+            radial-gradient(circle at 80% 100%, #ff7e00 10%, transparent 30%) 80px 0,
+            radial-gradient(circle at 50% 100%, #ff7e00 10%, transparent 30%) 120px 0,
+            radial-gradient(circle at 50% 50%, #ff7e00 10%, transparent 30%) 0 60px,
+            radial-gradient(circle at 50% 50%, #ff7e00 10%, transparent 30%) 40px 60px,
+            radial-gradient(circle at 50% 50%, #ff7e00 10%, transparent 30%) 80px 60px,
+            radial-gradient(circle at 50% 50%, #ff7e00 10%, transparent 30%) 120px 60px,
+            radial-gradient(circle at 50% 0%, #ff7e00 10%, transparent 30%) 0 120px,
+            radial-gradient(circle at 50% 0%, #ff7e00 10%, transparent 30%) 40px 120px,
+            radial-gradient(circle at 50% 0%, #ff7e00 10%, transparent 30%) 80px 120px,
+            radial-gradient(circle at 50% 0%, #ff7e00 10%, transparent 30%) 120px 120px;
+    background-size: 40px 40px;
+    animation: flicker 0.2s infinite alternate-reverse;
+}
+
+.top-left {
+    top: -25px;
+    left: -25px;
+}
+
+.top-right {
+    top: -25px;
+    right: -25px;
+}
+
+.bottom-left {
+    bottom: -25px;
+    left: -25px;
+}
+
+.bottom-right {
+    bottom: -25px;
+    right: -25px;
+}
+
+@keyframes flicker {
+    from {
+        opacity: 0.8;
+    }
+    to {
+        opacity: 1;
+    }
+}*/
+.gun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.gun-body {
+    width: 100px;
+    height: 50px;
+    background-color: #999;
+    border-radius: 10px;
+}
+
+.bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #999;
+    position: absolute;
+    top: 45px;
+    border-radius: 50%;
+    animation: fireAnimation 1s infinite alternate;
+}
+
+@keyframes fireAnimation {
+    0% {
+        transform: translateY(0) rotate(-45deg);
+    }
+    100% {
+        transform: translateY(-20px) rotate(-45deg);
+    }
+}
+
+#slide{
+    /* width:max-content;
+     margin-top:50px;*/
+
+    width: auto; /* Réglez la largeur sur "auto" pour qu'elle s'adapte au contenu */
+    margin-top: 20px; /* Augmentez la marge supérieure pour élargir l'espace en haut */
+    margin-bottom: 10px; /* Ajoutez une marge inférieure pour séparer le contenu suivant */
+
+}
+.item{
+    width:200px;
+    height:300px;
+    background-position: 50% 50%;
+    display: inline-block;
+    transition: 0.5s;
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+    top:50%;
+    transform: translate(0,-50%);
+    border-radius: 20px;
+    box-shadow:  0 30px 50px #505050;
+}
+.item:nth-child(1),
+.item:nth-child(2){
+    left:0;
+    top:0;
+    transform: translate(0,0);
+    border-radius: 0;
+    width:100%;
+    height:100%;
+    box-shadow: none;
+}
+.item:nth-child(3){
+    left:50%;
+}
+.item:nth-child(4){
+    left:calc(50% + 220px);
+}
+.item:nth-child(5){
+    left:calc(50% + 440px);
+}
+.item:nth-child(n+6){
+    left:calc(50% + 660px);
+    opacity: 0;
+}
+.item .content{
+    position: absolute;
+    top:50%;
+    left:100px;
+    width:300px;
+    text-align: left;
+    padding:0;
+    color:#eee;
+    transform: translate(0,-50%);
+    display: none;
+    font-family: system-ui;
+}
+.item:nth-child(2) .content{
+    display: block;
+    z-index: 11111;
+}
+.item .name{
+    font-size: 40px;
+    font-weight: bold;
+    opacity: 0;
+    animation:showcontent 1s ease-in-out 1 forwards
+}
+.item .des{
+    margin:20px 0;
+    opacity: 0;
+    animation:showcontent 1s ease-in-out 0.3s 1 forwards
+}
+.item button{
+    padding:10px 20px;
+    border:none;
+    opacity: 0;
+    animation:showcontent 1s ease-in-out 0.6s 1 forwards
+}
+@keyframes showcontent{
+    from{
+        opacity: 0;
+        transform: translate(0,100px);
+        filter:blur(33px);
+    }to{
+         opacity: 1;
+         transform: translate(0,0);
+         filter:blur(0);
+     }
+}
+.buttons{
+    position: absolute;
+    bottom:30px;
+    z-index: 222222;
+    text-align: center;
+    width:100%;
+}
+.buttons button{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    border:1px solid #555;
+    transition: 0.5s;
+}.buttons button:hover{
+     background-color: #bac383;
+ }
+
+
+
+
+footer {
+    text-align: center;
+    background-color: #cfc4c1;
+    color: #fff;
+    padding: 10px 0;
+    margin-top: 90px;
+}
+footer .service_list{
+/padding: 10px 10%;/
+display: flex; /horizental/
+justify-content: space-between;/espace "gal entre imgs/
+/display: inline-block ;/
+    /*padding: 10px;
+    /* width: 10;*/
+    /* justify-content: space-between;
+     /align-items: center;/
+    /* text-align: center;
+     flex-wrap: wrap;*/
+/align-items: center;/
+
+}
+
+
+
+.service  img {
+    width: 100px;
+    /*background-color: #27ae60;
+    padding: 10px;/* cercle de l'horloge->*/
+    /*border-radius: 6%;
+    margin-bottom: 50px;
+    margin-right: 100px;*/
+    max-width: 100%;
+    height: auto;
+    margin: 0 10px; /* Espacement horizontal entre les images */
+}
+
+
+
+
+.service{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    flex-direction: column;
+    margin: 25px auto;
+
+}
+.service p{
+    color: #444;
+}
+/*hr{
+    background-color: #ccc;
+    border: 0;
+    height: 2px;
+    width: 100%;
+
+}*/
+.footer_texte{
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 0;
+    margin-top: 15px;
+
+}
+.footer_texte span{
+    color: #04f96a;
+}

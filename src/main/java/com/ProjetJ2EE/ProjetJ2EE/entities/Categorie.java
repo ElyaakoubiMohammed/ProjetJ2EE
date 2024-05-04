@@ -16,7 +16,7 @@ public class Categorie
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CategorieId;
-    private String CategorieType;
+    private String categorieType;
     private String DescriptionCategorie;
     private Integer GameNumber;
     @OneToMany(mappedBy = "categorie")
@@ -24,6 +24,6 @@ public class Categorie
 
 
     public String getCategorieType() {
-        return CategorieType;
+        return categorieType;
     }
 }

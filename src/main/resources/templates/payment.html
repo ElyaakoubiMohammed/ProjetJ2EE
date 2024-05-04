@@ -59,14 +59,15 @@
         <div id="card-stripe">
         </div>
 
-    </div>
-    <input type="text" id="card-token" />
-    <button th:href="@{'/game-details/' + ${game.gameId}}" type="button" id="card-btn">Submit</button>
-</div>
+        <div>
+            <label for="card-token"></label><input type="text" id="card-token" />
+            <!-- Use JavaScript to navigate when button is clicked -->
+            <button type="button" id="card-btn" onclick="window.location.href='/main'">Submit</button>
+        </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script src="https://use.fontawesome.com/f1e0bf0cbc.js"></script>
-<script th:src="@{/payment/script.js}"></script>
+
 </body>
 </html>

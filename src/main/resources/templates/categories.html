@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>categories</title>
+    <link rel="stylesheet" th:href="@{/categories/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="logo">NexaPlay</div>
+    <nav>
+        <ul>
+            <li><a th:href="@{'/categories?category=Action'}">Action</a></li>
+            <li><a th:href="@{'/categories?category=Adventure'}">Adventure</a></li>
+            <li><a th:href="@{'/categories?category=Horror'}">Horror</a></li>
+            <li><a th:href="@{'/categories?category=Open%20World'}">Open World</a></li>
+        </ul>
+    </nav>
+    <!--<div class="fire top-left"></div>
+    <div class="fire top-right"></div>
+    <div class="fire bottom-left"></div>
+    <div class="fire bottom-right"></div>-->
+</header>
+<div class="container">
+
+    <section id="action" class="category-section">
+        <div id="slide">
+            <div class="item" th:each="game : ${games}" th:style="'background-image: url(data:image/jpeg;base64,' + (${#lists.isEmpty(game.images) ? '' : game.images[0].pictureBase64}) + ');'">
+
+            <div class="content">
+                    <div class="name" th:text="${game.gameName}">Game Name</div>
+                    <div class="des" th:text="${game.description}">Game Description</div>
+                    <button th:href="@{'/game-details/' + ${game.gameId}}" class="button">See more</button>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev" title="Previous"><i class="fa-solid fa-angle-left"></i></button>
+            <button id="next"title="Next" ><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </section>
+
+    <!--
+        <section id="Adventure" class="category-section">
+            <div id="slide">
+                <div class="item" style="background-image: url(static/categories/images/t1.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t2.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t3.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t6.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t4.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t5.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="prev" title="Previous"><i class="fa-solid fa-angle-left"></i></button>
+                <button id="next" title="Next"><i class="fa-solid fa-angle-right"></i></button>
+
+            </div>
+        </section>
+
+
+        <section id="Horror" class="category-section">
+            <div id="slide">
+                <div class="item" style="background-image: url(static/categories/images/t1.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t2.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t3.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t6.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t4.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t5.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="prev" title="Previous"><i class="fa-solid fa-angle-left"></i></button>
+                <button id="next" title="Next"><i class="fa-solid fa-angle-right"></i></button>
+
+            </div>
+        </section>
+
+        <section id="Open world" class="category-section">
+            <div id="slide">
+                <div class="item" style="background-image: url(static/categories/images/t1.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t2.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t3.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t6.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t4.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(static/categories/images/t5.jpg);">
+                    <div class="content">
+                        <div class="name">LUNDEV</div>
+                        <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="prev" title="Previous"><i class="fa-solid fa-angle-left"></i></button>
+                <button id="next" title="Next"><i class="fa-solid fa-angle-right"></i></button>
+
+            </div>
+        </section>-->
+
+</div>
+
+<script th:src="@{/categories/script.js}"></script>
+</body>
+</html>
+
+

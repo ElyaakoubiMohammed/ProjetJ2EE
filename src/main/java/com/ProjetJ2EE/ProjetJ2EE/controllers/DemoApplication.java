@@ -13,6 +13,7 @@
     import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.*;
     import org.springframework.web.multipart.MultipartFile;
+    import java.util.stream.Collectors;
 
     import java.io.IOException;
     import java.util.Base64;
@@ -77,7 +78,11 @@
 
         @GetMapping("/main")
         public String Acceuil(Model model) {
-            List<Game> games = gameRepository.findAll();
+            // Fetch all games from the repository
+            List<Game> allGames = gameRepository.findAll();
+
+            // Limit the number of games to six
+            List<Game> games = allGames.stream().limit(6).collect(Collectors.toList());
 
             games.forEach(game -> {
                 List<Image> images = game.getImages();
@@ -98,7 +103,6 @@
             });
 
             model.addAttribute("coaches", coaches);
-
 
             return "main";
         }
