@@ -27,8 +27,7 @@
         <div th:each="user : ${users}" class="col-12 col-md-6 col-lg-12">
             <div class="member-entry">
                 <p href="#" class="member-img">
-                    <img th:src="${user.pictureBase64}" class="img-rounded">
-                    <i class="fa fa-forward"></i>
+                    <img th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}"/>
                 </p>
                 <div class="member-details">
                     <h4><p href="#" th:text="${user.username}">Coach Name</p></h4>
@@ -38,7 +37,6 @@
     </div>
 </div>
 
-<!-- Include necessary scripts if required -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

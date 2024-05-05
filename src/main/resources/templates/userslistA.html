@@ -27,8 +27,7 @@
       <div th:each="user : ${users}" class="col-12 col-md-6 col-lg-12">
         <div th:if="${user.usertype != 'A'}" class="member-entry">
           <p href="#" class="member-img">
-            <img th:src="${user.pictureBase64}" class="img-rounded">
-            <i class="fa fa-forward"></i>
+            <img th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}"/>
           </p>
           <div class="member-details">
             <h4><p href="#" th:text="${user.username}">Username</p></h4>
