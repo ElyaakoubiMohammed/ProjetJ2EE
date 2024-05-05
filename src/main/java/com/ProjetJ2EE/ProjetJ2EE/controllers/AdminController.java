@@ -6,17 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
+
 @Controller
-public class AdminController
-{
+public class AdminController {
+
     @Autowired
     private AccountRepository accountRepository;
+
     @GetMapping("/userslistA")
-    public String usersList(Model model) {
-        List<Account> users = accountRepository.findAll();
+    public String usersList(Model model, @RequestParam(name = "search", required = false) String searchQuery) {
+        List<Account> users;
+
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            users = accountRepository.findByusernameContaining(searchQuery);
+        } else {
+            users = accountRepository.findAll();
+        }
 
         users.forEach(user -> {
             byte[] userImage = user.getImage();
@@ -25,12 +35,11 @@ public class AdminController
                 user.setPictureBase64(base64Image);
             }
         });
-
         model.addAttribute("users", users);
         return "userslistA";
     }
+
     public String bytesToBase64(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);
     }
-
 }
