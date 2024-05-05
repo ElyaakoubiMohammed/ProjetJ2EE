@@ -171,8 +171,14 @@
 
 
         @GetMapping("/userslist")
-        public String usersList(Model model) {
-            List<Account> users = accountRepository.findAll();
+        public String usersList(Model model, @RequestParam(name = "search", required = false) String searchQuery) {
+            List<Account> users;
+
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                users = accountRepository.findByusernameContaining(searchQuery);
+            } else {
+                users = accountRepository.findAll();
+            }
 
             users.forEach(user -> {
                 byte[] userImage = user.getImage();
