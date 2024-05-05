@@ -45,13 +45,12 @@
         }
 
         @PostMapping("/register")
-        public String register(@ModelAttribute Account account, Model model) {
-            if (!accountService.addAccount(account.getEmail(), account.getPassword(), account.getUsername(), account.getCountry(), account.getFirstName(), account.getLastName(), account.getAge(), account.getGender())) {
+        public String register(@ModelAttribute Account account, Model model, @RequestParam("imageFile") MultipartFile imageFile) {
+            if (!accountService.addAccount(account.getEmail(), account.getPassword(), account.getUsername(), account.getCountry(), account.getFirstName(), account.getLastName(), account.getAge(), account.getGender(), imageFile)) {
                 model.addAttribute("error", "Email or username already exists");
                 return "register";
             }
-
-            return "redirect:/profilepic";
+            return "main";
         }
 
         @GetMapping("/login")
@@ -74,10 +73,7 @@
 
         @GetMapping("/main")
         public String Acceuil(Model model) {
-            // Fetch all games from the repository
             List<Game> allGames = gameRepository.findAll();
-
-            // Limit the number of games to six
             List<Game> games = allGames.stream().limit(6).collect(Collectors.toList());
 
             games.forEach(game -> {

@@ -10,6 +10,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
     <style>
         .gradient-custom-2 {
@@ -25,8 +27,7 @@
         }
 
         .profile-picture {
-            width: 200px;
-            height: 300px;
+            height: 330px;
             z-index: 1;
         }
         body {
@@ -135,16 +136,14 @@
                     <div class="rounded-top text-white d-flex flex-row"
                          style="background-color: rgba(0, 0, 0, 0.6);">
                         <div class="ms-4 mt-4">
-                            <img style="width: 300px" th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}" alt="Profile Picture" class="img-fluid img-thumbnail profile-picture">
+                            <img style="width: 360px; margin-left: 140px" th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}" alt="Profile Picture" class="img-fluid img-thumbnail profile-picture">
                             <div class="ms-3 mt-4">
-                                <h5 th:text="${user.username}"></h5>
-                                <p th:text="${user.country}"></p>
-                                <p th:text="'I have '+${user.gameCount}+' games'"></p>
+                                <h5 style=" margin-left: 240px" th:text="${user.username}"></h5>
+                                <p style=" margin-left: 250px" th:text="${user.country}"></p>
+                                <p style=" margin-left: 230px" th:text="'I have '+${user.gameCount}+' games'"></p>
                             </div>
                         </div>
-                        <div class="ms-auto me-4 mt-4">
-                            <button class="btn btn-game-list" id="btn-game-list">Game List</button>
-                        </div>
+
                     </div>
 
                     <div class="card-body p-4 text-black">
@@ -165,13 +164,11 @@
                         </div>
                         <div class="row g-2" id="gallery">
                             <!-- Images will be dynamically added here -->
-                            <img src="image1.jpg" alt="Recent Photo" class="col-md-4">
-                            <img src="image2.jpg" alt="Recent Photo" class="col-md-4">
-                            <img src="image3.jpg" alt="Recent Photo" class="col-md-4">
+                            <img th:src="@{/profileSC/sc1.jpg}" alt="Recent Photo" class="col-md-4">
+                            <img th:src="@{/profileSC/sc5.jpg}" alt="Recent Photo" class="col-md-4">
+                            <img th:src="@{/profileSC/sc3.jpg}" alt="Recent Photo" class="col-md-4">
                         </div>
                         <div id="more-photos" style="display: none;">
-                            <!-- Additional photos will be shown here -->
-                            <img src="image4.jpg" alt="Recent Photo" class="col-md-4">
                             <img src="image5.jpg" alt="Recent Photo" class="col-md-4">
                             <img src="image6.jpg" alt="Recent Photo" class="col-md-4">
                         </div>
@@ -181,11 +178,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
 
 
 <script>
@@ -219,20 +211,33 @@
             const reader = new FileReader();
             reader.onload = function (e) {
                 profilePicture.src = e.target.result;
-                // You may add functionality here to upload the new profile picture to a server
             };
             reader.readAsDataURL(file);
         });
-
-        // Call function to change background photo and profile picture
         changeBackgroundPhoto();
         changeProfilePicture();
 
         // Set interval to change background photo
         setInterval(changeBackgroundPhoto, 3000);
     });
-</script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var images = document.querySelectorAll('#gallery img');
+        images.forEach(function (img) {
+            img.addEventListener('click', function () {
+                // Get the src attribute of the clicked image
+                var imageUrl = img.getAttribute('src');
+                // Open the clicked image in Lightbox2
+                lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true,
+                    'alwaysShowNavOnTouchDevices': true
+                });
+                lightbox.open([{ src: imageUrl, type: 'image' }]);
+            });
+        });
+    });
 
+</script>
 </body>
 
 </html>

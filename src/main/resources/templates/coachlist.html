@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Masters</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/userslist/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row bootstrap snippets bootdeys">
+        <div class="col-md-9 col-sm-7">
+            <a href="/coachlist"><h2>Game Masters</h2></a>
+        </div>
+        <div class="col-md-3 col-sm-5">
+            <form method="get" action="/userslistA" role="form" class="search-form-full">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" id="search-input" placeholder="Search...">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div th:each="user : ${users}" class="col-12 col-md-6 col-lg-12">
+            <a th:href="@{'/profile2/' + ${user.accountId}}">
+                <div th:if="${user.usertype == 'C'}" class="member-entry">
+                    <p href="#" class="member-img">
+                        <img th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}"/>
+                    </p>
+
+                    <div class="member-details">
+                        <h4><p href="#" th:text="'Username : '+${user.username}">Coach Name</p></h4>
+                        <h4><p href="#" th:text="'Games played : '+${user.gameCount}">Coach Name</p></h4>
+                        <h4><p href="#" th:text="'Gender : '+${user.gender}">Coach Name</p></h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

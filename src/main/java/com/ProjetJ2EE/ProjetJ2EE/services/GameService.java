@@ -32,7 +32,6 @@ public class GameService {
     public void addGame(String gameName, String description, Date publishDate, MultipartFile imageFile, String categoryName,
                         String minOperatingSystem, String minProcessor, String minGPU, int minMemory, int minStorage,
                         String recOperatingSystem, String recProcessor, String recGPU, int recMemory, int recStorage, double prix) throws IOException {
-        // Create the Specs objects for minimum and recommended specifications
         Specs minSpecs = Specs.builder()
                 .OperatingSystem(minOperatingSystem)
                 .Processor(minProcessor)
@@ -49,11 +48,9 @@ public class GameService {
                 .Storage(recStorage)
                 .build();
 
-        // Save the Specs entities using the Specs repository
         specsRepository.save(minSpecs);
         specsRepository.save(recSpecs);
 
-        // Create the Game object and set its properties
         Game game = Game.builder()
                 .gameName(gameName)
                 .description(description)
@@ -81,17 +78,12 @@ public class GameService {
                 break;
         }
 
-        // Set the category directly
         game.setCategorie(categorie);
 
-        // Save the game
         gameRepository.save(game);
 
         if (imageFile != null && !imageFile.isEmpty()) {
-            // Set the byte array directly to the image field
             byte[] imageData = imageFile.getBytes();
-
-            // Create and save the image entity
             Image image = Image.builder()
                     .game(game)
                     .image(imageData)
