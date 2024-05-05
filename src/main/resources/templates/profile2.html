@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer Profile</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- Custom CSS -->
+
+    <style>
+        .gradient-custom-2 {
+            background: #fbc2eb;
+            background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+            background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+            position: relative;
+        }
+
+        .profile-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+        }
+
+        .profile-picture {
+            width: 200px;
+            height: 300px;
+            z-index: 1;
+        }
+        body {
+            background: #654ea3;
+            background: linear-gradient(45deg,  #fbc2eb,#00dbde);
+            min-height: 100vh;
+            overflow-x:hidden;
+        }
+
+        .background-photos {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            z-index: 0;
+            overflow: hidden;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .cool-background {
+            width: 100%;
+            height: 100%;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            position: relative; /* Add position relative */
+            animation: cool-animation 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes cool-animation {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Add custom animation for gaming theme */
+        @keyframes gaming-animation {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        .cool-section {
+            padding: 150px 0; /* Increase padding for a larger cool section */
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden; /* Add overflow hidden to clip the animated background */
+        }
+
+        .cool-background {
+            width: 100%;
+            height: 1000%;
+            background: #fbc2eb;
+            background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+            background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+            position: relative;
+
+            overflow: hidden;
+            animation: cool-animation 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes cool-animation {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Add custom animation for gaming theme */
+        @keyframes gaming-animation {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        .cool-content {
+            position: relative;
+            z-index: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+<section class="h-100 gradient-custom-2">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-9 col-xl-7">
+                <div class="card profile-card">
+                    <div class="background-photos"></div>
+                    <div class="rounded-top text-white d-flex flex-row"
+                         style="background-color: rgba(0, 0, 0, 0.6);">
+                        <div class="ms-4 mt-4">
+                            <img style="width: 300px" th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}" alt="Profile Picture" class="img-fluid img-thumbnail profile-picture">
+                            <div class="ms-3 mt-4">
+                                <h5 th:text="${user.username}"></h5>
+                                <p th:text="${user.country}"></p>
+                                <p th:text="'I have '+${user.gameCount}+' games'"></p>
+                            </div>
+                        </div>
+                        <div class="ms-auto me-4 mt-4">
+                            <button class="btn btn-game-list" id="btn-game-list">Game List</button>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4 text-black">
+                        <div class="mb-5">
+                            <p class="lead fw-normal mb-1">About</p>
+                            <div class="p-4"
+                                 style="background-color: #fbc2eb; background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1)); background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));">
+                                <p class="font-italic mb-1">🎮 Passionate Gamer</p>
+                                <p class="font-italic mb-1">🤪 Lives for the thrill of the game</p>
+                                <p class="font-italic mb-0">🤝 Always up for a challenge</p>
+                                <p class="font-italic mb-0">🕹️ Passionate about video games, pop culture, and
+                                    engaging discussions, join me for fun and entertaining moments!</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <p class="lead fw-normal mb-0">Recent photos</p>
+                            <button class="btn btn-outline-dark" id="btn-see-more">See more</button>
+                        </div>
+                        <div class="row g-2" id="gallery">
+                            <!-- Images will be dynamically added here -->
+                            <img src="image1.jpg" alt="Recent Photo" class="col-md-4">
+                            <img src="image2.jpg" alt="Recent Photo" class="col-md-4">
+                            <img src="image3.jpg" alt="Recent Photo" class="col-md-4">
+                        </div>
+                        <div id="more-photos" style="display: none;">
+                            <!-- Additional photos will be shown here -->
+                            <img src="image4.jpg" alt="Recent Photo" class="col-md-4">
+                            <img src="image5.jpg" alt="Recent Photo" class="col-md-4">
+                            <img src="image6.jpg" alt="Recent Photo" class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const backgroundPhotos = document.querySelector('.background-photos');
+        const profilePicture = document.querySelector('.profile-picture');
+        const galleryImages = document.querySelectorAll('#gallery img');
+        let currentPhotoIndex = 0;
+
+        function changeBackgroundPhoto() {
+            backgroundPhotos.style.opacity = '0';
+            setTimeout(() => {
+                const currentImage = galleryImages[currentPhotoIndex];
+                backgroundPhotos.style.backgroundImage = url('${currentImage.src}');
+                backgroundPhotos.style.opacity = '1';
+                currentPhotoIndex = (currentPhotoIndex + 1) % galleryImages.length;
+            }, 500);
+        }
+
+        function changeProfilePicture() {
+            profilePicture.src = galleryImages[0].src; // Assuming first image is the profile picture
+        }
+
+        document.getElementById('btn-see-more').addEventListener('click', function () {
+            document.getElementById('more-photos').style.display = 'block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('upload-profile').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                profilePicture.src = e.target.result;
+                // You may add functionality here to upload the new profile picture to a server
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Call function to change background photo and profile picture
+        changeBackgroundPhoto();
+        changeProfilePicture();
+
+        // Set interval to change background photo
+        setInterval(changeBackgroundPhoto, 3000);
+    });
+</script>
+
+</body>
+
+</html>
