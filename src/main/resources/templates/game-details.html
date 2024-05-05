@@ -139,10 +139,11 @@
 
      -->
 
-    <form action="/game-details/${game.id}" method="post">
+    <form action="/game-details/${game.id}/add-comment" method="post">
         <div class="create_new_comment">
             <div class="input_comment">
-                <input type="text" name="comment" placeholder="Join the conversation..">
+                <input type="text" name="content" placeholder="Join the conversation..">
+                <input type="hidden" name="gameId" th:value="${game.gameId}">
                 <button style="margin-top: 20px; margin-left: 790px" type="submit">Add comment</button>
             </div>
         </div>
@@ -160,15 +161,8 @@
                     <p th:text="${comment.feedBack}"></p>
                 </div>
                 <div class="comment_toolbar">
-                    <div class="comment_details">
-                        <ul>
-                            <!-- Add timestamp and date here -->
-                            <li><i class="fa fa-clock-o"></i> <!-- Add timestamp here --></li>
-                            <li><i class="fa fa-calendar"></i> <!-- Add date here --></li>
-                            <li><i class="fa fa-pencil"></i></li>
-                        </ul>
-                    </div>
-                    <div class="comment_tools">
+
+                    <div class="comment_tools" style="margin-left: 570px">
                         <ul>
                             <li><i class="fa fa-share-alt"></i></li>
                             <li><i class="fa fa-reply"></i></li>

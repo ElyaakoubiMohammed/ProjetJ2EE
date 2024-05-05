@@ -13,18 +13,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CommentController
-{
-    /*
+public class CommentController {
+
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
     private CommentRepository commentRepository;
-    @GetMapping("/game-details/{id}")
-    public String addComment(@PathVariable("id") Long id,Model model) {
 
-
-        return "redirect:/gameslist";
+    @PostMapping("/game-details/{id}/add-comment")
+    public String addComment(@PathVariable("id") Long id, Comment newComment) {
+        // Retrieve the game by its ID
+        Game game = gameRepository.findById(id).orElse(null);
+        if (game != null) {
+            // Associate the new comment with the game
+            newComment.setGame(game);
+            // Save the new comment
+            commentRepository.save(newComment);
+        }
+        return "redirect:/game-details/{id}";
     }
-
-*/
 }
