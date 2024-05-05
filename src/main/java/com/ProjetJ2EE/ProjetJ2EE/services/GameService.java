@@ -111,6 +111,12 @@ public class GameService {
 
         }
     }
+    @Transactional
+
+    public void deleteGameById(Long gameId)
+    {
+        gameRepository.deleteById(gameId);
+    }
 
 
 }

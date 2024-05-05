@@ -15,26 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CommentController
 {
-
-
-
+    /*
     @Autowired
     private GameRepository gameRepository;
     private CommentRepository commentRepository;
-    @PostMapping("/game-details/{id}")
-    public String addComment(@PathVariable("id") Long id, @RequestParam("comment") String commentText, Model model) {
-        Game game = gameRepository.findById(id).orElse(null);
-        if (game != null) {
-            Comment comment = Comment.builder()
-                    .FeedBack(commentText)
-                    .game(game)
-                    .build();
-            game.getComments().add(comment);
-            commentRepository.save(comment);
-        }
+    @GetMapping("/game-details/{id}")
+    public String addComment(@PathVariable("id") Long id,Model model) {
 
-        return "redirect:/register";
+
+        return "redirect:/gameslist";
     }
 
-
+*/
 }

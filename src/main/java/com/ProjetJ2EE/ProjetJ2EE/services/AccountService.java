@@ -71,5 +71,9 @@
 
             return false;
         }
+
+        public void deleteUserById(Long userId) {
+            accountRepository.deleteById(userId);
+        }
     }
 

@@ -1,6 +1,7 @@
     package com.ProjetJ2EE.ProjetJ2EE.controllers;
 
     import com.ProjetJ2EE.ProjetJ2EE.entities.Account;
+    import com.ProjetJ2EE.ProjetJ2EE.entities.Comment;
     import com.ProjetJ2EE.ProjetJ2EE.entities.Game;
     import com.ProjetJ2EE.ProjetJ2EE.entities.Image;
     import com.ProjetJ2EE.ProjetJ2EE.repositories.AccountRepository;
@@ -146,5 +147,14 @@
                 return "login";
             }
         }
+
+        @PostMapping("/deleteUser")
+        public String delete(@RequestParam("userId") Long userId) {
+
+            accountService.deleteUserById(userId);
+
+            return "redirect:/userslistA";
+        }
+
 
     }

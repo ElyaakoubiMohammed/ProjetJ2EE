@@ -151,42 +151,36 @@
 
     <!-- new comment -->
     <div class="new_comment">
-
-        <!-- build comment -->
+        <!-- Display comments for a specific game -->
         <ul class="user_comment">
-
-            <!-- current #{user} avatar -->
-            <div class="user_avatar">
-
-            </div><!-- the comment body --><div class="comment_body">
-            <p>Gastropub cardigan jean shorts, kogi Godard PBR&B lo-fi locavore. Organic chillwave vinyl Neutra. Bushwick Helvetica cred freegan, crucifix Godard craft beer deep v mixtape cornhole Truffaut master cleanse pour-over Odd Future beard. Portland polaroid iPhone.</p>
-        </div>
-
-            <div class="comment_toolbar">
-
-                <div class="comment_details">
-                    <ul>
-                        <li><i class="fa fa-clock-o"></i> 13:94</li>
-                        <li><i class="fa fa-calendar"></i> 04/01/2015</li>
-                        <li><i class="fa fa-pencil"></i> <span class="user">John Smith</span></li>
-                    </ul>
-                </div><div class="comment_tools">
-                <ul>
-                    <li><i class="fa fa-share-alt"></i></li>
-                    <li><i class="fa fa-reply"></i></li>
-                    <li><i class="fa fa-heart love"> 33</i></li>
-                </ul>
-            </div>
-
-
-
-
-
-
-
+            <!-- Iterate over comments for the specific game -->
+            <li th:each="comment : ${game.comments}">
+                <div class="comment_body">
+                    <!-- Display feedback for each comment -->
+                    <p th:text="${comment.feedBack}"></p>
+                </div>
+                <div class="comment_toolbar">
+                    <div class="comment_details">
+                        <ul>
+                            <!-- Add timestamp and date here -->
+                            <li><i class="fa fa-clock-o"></i> <!-- Add timestamp here --></li>
+                            <li><i class="fa fa-calendar"></i> <!-- Add date here --></li>
+                            <li><i class="fa fa-pencil"></i></li>
+                        </ul>
+                    </div>
+                    <div class="comment_tools">
+                        <ul>
+                            <li><i class="fa fa-share-alt"></i></li>
+                            <li><i class="fa fa-reply"></i></li>
+                            <li><i class="fa fa-heart love"> 33</i></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
         </ul>
-
     </div>
+
+
 
 
 </div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GamesA</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/userslist/style2.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row bootstrap snippets bootdeys">
+        <div class="col-md-9 col-sm-7">
+            <a href="/gameslist"><h2>Games</h2></a>
+        </div>
+        <div class="col-md-3 col-sm-5">
+            <form method="get" action="/gameslist" role="form" class="search-form-full">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" id="search-input" placeholder="Search...">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div  class="row">
+        <div th:each="game : ${games}" class="col-12 col-md-6 col-lg-12">
+            <a th:href="@{'/game-details/' + ${game.gameId}}">
+                <div  class="member-entry">
+                    <div  class="member-details">
+                        <h4><p href="#" th:text="${game.gameName}">Username</p></h4>
+                        <p href="#" class="member-img">
+                            <img th:src="'data:image/jpeg;base64,' + ${game.images[0].pictureBase64}" alt="Game Image"/>
+                        </p>
+                        <form th:action="@{/deleteGame}" method="post" class="delete-button">
+                            <input type="hidden" name="gameId" th:value="${game.gameId}" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

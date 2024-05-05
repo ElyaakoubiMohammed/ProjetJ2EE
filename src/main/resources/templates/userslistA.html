@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Members</title>
+  <title>LegendsA</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/userslist/style.css}">
@@ -11,7 +11,7 @@
 <div class="container">
   <div class="row bootstrap snippets bootdeys">
     <div class="col-md-9 col-sm-7">
-      <a href="/userslistA"><h2>Users</h2></a>
+      <a href="/userslistA"><h2>Legends</h2></a>
     </div>
     <div class="col-md-3 col-sm-5">
       <form method="get" action="/userslistA" role="form" class="search-form-full">
@@ -24,16 +24,22 @@
 
     <div class="row">
       <div th:each="user : ${users}" class="col-12 col-md-6 col-lg-12">
+        <a th:href="@{'/profile2/' + ${user.accountId}}">
         <div th:if="${user.usertype != 'A'}" class="member-entry">
           <p href="#" class="member-img">
             <img th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}"/>
           </p>
+          <form th:action="@{/deleteUser}" method="post" class="delete-button">
+            <input type="hidden" name="userId" th:value="${user.accountId}" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
           <div class="member-details">
             <h4><p href="#" th:text="'Username : '+${user.username}">Coach Name</p></h4>
             <h4><p href="#" th:text="'Games played : '+${user.gameCount}">Coach Name</p></h4>
             <h4><p href="#" th:text="'Gender : '+${user.gender}">Coach Name</p></h4>
           </div>
         </div>
+        </a>
       </div>
     </div>
   </div>

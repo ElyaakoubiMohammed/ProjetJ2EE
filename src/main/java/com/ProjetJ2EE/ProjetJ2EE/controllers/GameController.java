@@ -96,7 +96,7 @@ public class GameController {
     }
 
     @GetMapping("/gameslist")
-    public String usersList(Model model, @RequestParam(name = "search", required = false) String searchQuery) {
+    public String gamesList(Model model, @RequestParam(name = "search", required = false) String searchQuery) {
         List<Game> games;
 
         if (searchQuery != null && !searchQuery.isEmpty()) {
@@ -111,9 +111,12 @@ public class GameController {
                 String base64Image = bytesToBase64(image.getImage());
                 image.setPictureBase64(base64Image);
             });
-        });
 
+            List<Comment> comments = commentRepository.findByGame(game);
+            game.setComments(comments);
+        });
         model.addAttribute("games", games);
+
         return "gameslist";
     }
 
@@ -122,6 +125,13 @@ public class GameController {
     }
 
 
+    @PostMapping("/deleteGame")
+    public String delete(@RequestParam("gameId") Long gameId) {
+
+        gameService.deleteGameById(gameId);
+
+        return "redirect:/gameslistA";
+    }
 
 
 }
