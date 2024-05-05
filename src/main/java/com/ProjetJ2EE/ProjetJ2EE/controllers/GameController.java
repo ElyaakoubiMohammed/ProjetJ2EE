@@ -1,9 +1,6 @@
 package com.ProjetJ2EE.ProjetJ2EE.controllers;
 
-import com.ProjetJ2EE.ProjetJ2EE.entities.Account;
-import com.ProjetJ2EE.ProjetJ2EE.entities.Categorie;
-import com.ProjetJ2EE.ProjetJ2EE.entities.Game;
-import com.ProjetJ2EE.ProjetJ2EE.entities.Image;
+import com.ProjetJ2EE.ProjetJ2EE.entities.*;
 import com.ProjetJ2EE.ProjetJ2EE.repositories.GameRepository;
 import com.ProjetJ2EE.ProjetJ2EE.repositories.ImageRepository;
 import com.ProjetJ2EE.ProjetJ2EE.services.GameService;
@@ -39,7 +36,31 @@ public class GameController {
             return "payment";
 
     }
+    @GetMapping("/game-details/{id}")
+    public String showGameDetails(@PathVariable("id") Long id, Model model) {
+        Game game = gameRepository.findById(id).orElse(null);
 
+
+        if (game != null) {
+            game.getCategorie();
+            game.getMinSpecs();
+            game.getRecSpecs();
+
+            List<Image> images = game.getImages();
+            images.forEach(image -> {
+                String base64Image = bytesToBase64(image.getImage());
+                image.setPictureBase64(base64Image);
+            });
+
+            String categorieType = game.getCategorie().getCategorieType();
+            model.addAttribute("categorieType", categorieType);
+
+            model.addAttribute("game", game);
+            return "game-details";
+        } else {
+            return "error";
+        }
+    }
     @RequestMapping("/addgame")
     public String showAddGameForm() {
         return "addgame";

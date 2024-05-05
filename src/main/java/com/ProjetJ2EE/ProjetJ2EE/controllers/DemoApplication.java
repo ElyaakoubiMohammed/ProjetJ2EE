@@ -105,32 +105,6 @@
             return Base64.getEncoder().encodeToString(bytes);
         }
 
-        @GetMapping("/game-details/{id}")
-        public String showGameDetails(@PathVariable("id") Long id, Model model) {
-            Game game = gameRepository.findById(id).orElse(null);
-
-            if (game != null) {
-                game.getCategorie();
-                game.getMinSpecs();
-                game.getRecSpecs();
-
-                List<Image> images = game.getImages();
-                images.forEach(image -> {
-                    String base64Image = bytesToBase64(image.getImage());
-                    image.setPictureBase64(base64Image);
-                });
-
-                String categorieType = game.getCategorie().getCategorieType();
-                model.addAttribute("categorieType", categorieType);
-
-                model.addAttribute("game", game);
-                return "game-details";
-            } else {
-                return "error";
-            }
-        }
-
-
 
 
         @GetMapping("/userslist")

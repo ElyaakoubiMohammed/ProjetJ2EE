@@ -105,12 +105,10 @@ public class GameService {
         Account account = accountRepository.findById(accountId).orElse(null);
 
         if (game != null && account != null) {
-            // Increment the GameCount for the account
             account.setGameCount(account.getGameCount() + 1);
             accountRepository.save(account);
         } else {
-            // Handle the case where either the game or account is not found
-            // You can throw an exception, log an error, or handle it as appropriate for your application
+
         }
     }
 

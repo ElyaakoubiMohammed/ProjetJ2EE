@@ -101,6 +101,94 @@
         </div>
     </div>
 </div>
+
+<!-- comments container -->
+<div class="comment_block">
+
+    <!--
+        Comments are structured in the following way:
+
+        {ul} defines a new comment (singular)
+        {li} defines a new reply to the comment {ul}
+
+        example:
+
+        <ul>
+            <comment>
+
+            </comment
+
+                <li>
+                    <reply>
+
+                    </reply>
+                </li>
+
+                <li>
+                    <reply>
+
+                    </reply>
+                </li>
+
+                <li>
+                    <reply>
+
+                    </reply>
+                </li>
+        </ul>
+
+     -->
+
+    <form action="/game-details/{id}" method="post">
+        <div class="create_new_comment">
+            <div class="input_comment">
+                <input type="text" name="comment" placeholder="Join the conversation..">
+                <button style="margin-top: 20px; margin-left: 790px" type="submit">Add comment</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- new comment -->
+    <div class="new_comment">
+
+        <!-- build comment -->
+        <ul class="user_comment">
+
+            <!-- current #{user} avatar -->
+            <div class="user_avatar">
+
+            </div><!-- the comment body --><div class="comment_body">
+            <p>Gastropub cardigan jean shorts, kogi Godard PBR&B lo-fi locavore. Organic chillwave vinyl Neutra. Bushwick Helvetica cred freegan, crucifix Godard craft beer deep v mixtape cornhole Truffaut master cleanse pour-over Odd Future beard. Portland polaroid iPhone.</p>
+        </div>
+
+            <div class="comment_toolbar">
+
+                <div class="comment_details">
+                    <ul>
+                        <li><i class="fa fa-clock-o"></i> 13:94</li>
+                        <li><i class="fa fa-calendar"></i> 04/01/2015</li>
+                        <li><i class="fa fa-pencil"></i> <span class="user">John Smith</span></li>
+                    </ul>
+                </div><div class="comment_tools">
+                <ul>
+                    <li><i class="fa fa-share-alt"></i></li>
+                    <li><i class="fa fa-reply"></i></li>
+                    <li><i class="fa fa-heart love"> 33</i></li>
+                </ul>
+            </div>
+
+
+
+
+
+
+
+        </ul>
+
+    </div>
+
+
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const mainImage = document.getElementById('main-image');
