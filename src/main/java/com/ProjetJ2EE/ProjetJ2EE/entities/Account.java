@@ -33,8 +33,11 @@ public class Account
     @Column(name = "Pimage", columnDefinition = "LONGBLOB")
     private byte[] image;
     private String PictureBase64;
-
+    @OneToOne(mappedBy = "account")
+    private Wishlist wishlist;
     public void setImage(byte[] image) {
         this.image = image;
     }
+
+
 }

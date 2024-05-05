@@ -96,6 +96,9 @@
                 <a href="/pay" class="btn" style="margin-left: 20px">
                     Add to Cart <i class="fas fa-shopping-cart"></i>
                 </a>
+                <a href="#" class="btn" style="margin-left: 20px">
+                    Add to wishlist <i class="fas fa-shopping-cart"></i>
+                </a>
             </div>
 
         </div>
@@ -151,13 +154,11 @@
 
 
     <!-- new comment -->
-    <div class="new_comment">
-        <!-- Display comments for a specific game -->
+    <div class="new_comment" th:if="${game.comments != null and not #lists.isEmpty(game.comments)}">
         <ul class="user_comment">
-            <!-- Iterate over comments for the specific game -->
             <li th:each="comment : ${game.comments}">
                 <div class="comment_body">
-                    <!-- Display feedback for each comment -->
+                    <p th:text="${comment.titre}" style="font-weight: bolder; color: white; font-size: 25px; margin-bottom: 20px"></p>
                     <p th:text="${comment.feedBack}"></p>
                 </div>
                 <div class="comment_toolbar">
@@ -173,7 +174,6 @@
             </li>
         </ul>
     </div>
-
 
 
 
