@@ -24,7 +24,8 @@
 
     <div  class="row">
         <div th:each="game : ${games}" class="col-12 col-md-6 col-lg-12">
-            <a th:href="@{'/game-details/' + ${game.gameId}}"><div  class="member-entry">
+            <a th:href="@{'/game-details/' + ${game.gameId}}">
+                <div  class="member-entry">
             <div  class="member-details">
                 <h4><p href="#" th:text="${game.gameName}">Username</p></h4>
             <p href="#" class="member-img">

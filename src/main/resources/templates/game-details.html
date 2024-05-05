@@ -139,7 +139,7 @@
 
      -->
 
-    <form action="/game-details/{id}" method="post">
+    <form action="/game-details/${game.id}" method="post">
         <div class="create_new_comment">
             <div class="input_comment">
                 <input type="text" name="comment" placeholder="Join the conversation..">
@@ -147,6 +147,7 @@
             </div>
         </div>
     </form>
+
 
     <!-- new comment -->
     <div class="new_comment">
@@ -198,12 +199,11 @@
             thumbnail.addEventListener('click', function(event) {
                 event.preventDefault();
                 const thumbnailImage = thumbnail.querySelector('img');
-                mainImage.src = thumbnailImage.src; // Update the main image source
+                mainImage.src = thumbnailImage.src;
             });
         });
     });
 
 </script>
-<script th:src="@{/game-details/script.js}"></script>
 </body>
 </html>

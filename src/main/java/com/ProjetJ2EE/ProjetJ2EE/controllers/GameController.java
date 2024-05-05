@@ -1,6 +1,7 @@
 package com.ProjetJ2EE.ProjetJ2EE.controllers;
 
 import com.ProjetJ2EE.ProjetJ2EE.entities.*;
+import com.ProjetJ2EE.ProjetJ2EE.repositories.CommentRepository;
 import com.ProjetJ2EE.ProjetJ2EE.repositories.GameRepository;
 import com.ProjetJ2EE.ProjetJ2EE.repositories.ImageRepository;
 import com.ProjetJ2EE.ProjetJ2EE.services.GameService;
@@ -30,6 +31,9 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private CommentRepository commentRepository;
     @GetMapping("/pay")
     public String pay( Model model) {
 
@@ -116,5 +120,8 @@ public class GameController {
     public String bytesToBase64(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);
     }
+
+
+
 
 }

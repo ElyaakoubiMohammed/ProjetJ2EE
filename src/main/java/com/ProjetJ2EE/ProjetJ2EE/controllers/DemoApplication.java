@@ -129,7 +129,22 @@
             return "userslist";
         }
 
+        @GetMapping("/profile2/{userId}")
+        public String profile2(@PathVariable Long userId, Model model) {
+            Optional<Account> userOptional = accountRepository.findById(userId);
 
-
+            if (userOptional.isPresent()) {
+                Account user = userOptional.get();
+                byte[] userImage = user.getImage();
+                if (userImage != null) {
+                    String base64Image = bytesToBase64(userImage);
+                    user.setPictureBase64(base64Image);
+                }
+                model.addAttribute("user", user);
+                return "profile2";
+            } else {
+                return "login";
+            }
+        }
 
     }

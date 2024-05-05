@@ -48,5 +48,8 @@ public class Game {
     @JoinColumn(name = "image_image_id")
     private Image image;
 
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
+
 
 }
