@@ -129,44 +129,7 @@
                 return "error";
             }
         }
-        @RequestMapping("/profilepic")
-        public String Profilepic() {
-            return "profilepic";
-        }
 
-        @PostMapping("/profilepic")
-        public String addPicture(@RequestParam String email, @RequestParam("profilePicture") MultipartFile profilePicture) {
-            try {
-                if (profilePicture.isEmpty()) {
-                    return "redirect:/profilepic?error=file";
-                }
-
-                // Fetch the account associated with the email
-                Optional<Account> optionalAccount = accountRepository.findByEmail(email);
-                if (optionalAccount.isEmpty()) {
-                    return "redirect:/profilepic?error=accountNotFound";
-                }
-
-                Account account = optionalAccount.get();
-                byte[] picture = profilePicture.getBytes();
-                account.setImage(picture);
-
-                // Update the account picture
-                accountService.addPicture(email, profilePicture);
-            } catch (ClientAbortException e) {
-                // Handle the ClientAbortException here
-                // For example, you can log the exception
-                // logger.error("ClientAbortException occurred: " + e.getMessage());
-                return "redirect:/profilepic?error=clientAbortException";
-            } catch (IOException e) {
-                // Handle other IO exceptions here
-                // For example, you can log the exception
-                // logger.error("IOException occurred: " + e.getMessage());
-                e.printStackTrace();
-                return "redirect:/profilepic?error=file";
-            }
-            return "redirect:/main";
-        }
 
 
 

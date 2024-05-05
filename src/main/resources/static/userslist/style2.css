@@ -31,9 +31,9 @@
 }
 
 .member-entry .member-img img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 520px;
+    height: 430px;
+    border-radius: 20%;
     object-fit: cover;
 }
 

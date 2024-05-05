@@ -29,7 +29,9 @@
             <img th:src="'data:image/jpeg;base64,' + ${user.pictureBase64}"/>
           </p>
           <div class="member-details">
-            <h4><p href="#" th:text="${user.username}">Username</p></h4>
+            <h4><p href="#" th:text="'Username : '+${user.username}">Coach Name</p></h4>
+            <h4><p href="#" th:text="'Games played : '+${user.gameCount}">Coach Name</p></h4>
+            <h4><p href="#" th:text="'Gender : '+${user.gender}">Coach Name</p></h4>
           </div>
         </div>
       </div>

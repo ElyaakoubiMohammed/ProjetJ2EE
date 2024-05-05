@@ -65,13 +65,14 @@ public class GameService {
 
         Categorie categorie = new Categorie();
         switch (categoryName) {
+            case "horror":
+                categorie.setCategorieId(1L);
+                break;
             case "action":
                 categorie.setCategorieId(2L);
                 break;
             case "adventure":
                 categorie.setCategorieId(3L);
-            case "horror":
-                categorie.setCategorieId(1L);
                 break;
             case "openworld":
                 categorie.setCategorieId(4L);

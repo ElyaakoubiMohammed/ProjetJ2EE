@@ -12,4 +12,6 @@ import java.util.List;
 public interface GameRepository extends JpaRepository<Game,Long> {
     @Query("SELECT a FROM Game a WHERE a.categorie = :categorie")
     List<Game> findByCategorie(Categorie categorie);
+
+    List<Game> findBygameNameContaining(String searchQuery);
 }

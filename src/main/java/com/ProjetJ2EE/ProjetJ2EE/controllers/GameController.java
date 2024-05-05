@@ -1,5 +1,6 @@
 package com.ProjetJ2EE.ProjetJ2EE.controllers;
 
+import com.ProjetJ2EE.ProjetJ2EE.entities.Account;
 import com.ProjetJ2EE.ProjetJ2EE.entities.Categorie;
 import com.ProjetJ2EE.ProjetJ2EE.entities.Game;
 import com.ProjetJ2EE.ProjetJ2EE.entities.Image;
@@ -18,6 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -68,10 +70,30 @@ public class GameController {
         return "redirect:/main";
     }
 
+    @GetMapping("/gameslist")
+    public String usersList(Model model, @RequestParam(name = "search", required = false) String searchQuery) {
+        List<Game> games;
 
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            games = gameRepository.findBygameNameContaining(searchQuery);
+        } else {
+            games = gameRepository.findAll();
+        }
 
+        games.forEach(game -> {
+            List<Image> images = game.getImages();
+            images.forEach(image -> {
+                String base64Image = bytesToBase64(image.getImage());
+                image.setPictureBase64(base64Image);
+            });
+        });
 
+        model.addAttribute("games", games);
+        return "gameslist";
+    }
 
-
+    public String bytesToBase64(byte[] bytes) {
+        return Base64.getEncoder().encodeToString(bytes);
+    }
 
 }
