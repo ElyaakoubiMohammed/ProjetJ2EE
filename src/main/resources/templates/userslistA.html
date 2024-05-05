@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Members</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/userslist/style.css}">
+</head>
+<body>
+<div class="container">
+  <div class="row bootstrap snippets bootdeys">
+    <div class="col-md-9 col-sm-7">
+      <h2>Members</h2>
+    </div>
+    <div class="col-md-3 col-sm-5">
+      <form method="get" role="form" class="search-form-full">
+        <div class="form-group">
+          <input type="text" class="form-control" name="s" id="search-input" placeholder="Search...">
+          <i class="entypo-search"></i>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <div class="row">
+      <div th:each="user : ${users}" class="col-12 col-md-6 col-lg-12">
+        <div th:if="${user.usertype != 'A'}" class="member-entry">
+          <p href="#" class="member-img">
+            <img th:src="${user.pictureBase64}" class="img-rounded">
+            <i class="fa fa-forward"></i>
+          </p>
+          <div class="member-details">
+            <h4><p href="#" th:text="${user.username}">Username</p></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
