@@ -44,7 +44,6 @@ public class GameController {
     public String showGameDetails(@PathVariable("id") Long id, Model model) {
         Game game = gameRepository.findById(id).orElse(null);
 
-
         if (game != null) {
             game.getCategorie();
             game.getMinSpecs();

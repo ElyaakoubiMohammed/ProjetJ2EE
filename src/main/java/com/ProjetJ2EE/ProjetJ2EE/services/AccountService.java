@@ -28,7 +28,7 @@
         }
         @Transactional
         public boolean addAccount(String email, String password, String username, String country, String firstName, String lastName, int age, String gender, MultipartFile imageFile) {
-            // Check if the email or username already exists
+
             if (accountRepository.existsByemail(email) || accountRepository.existsByusername(username)) {
                 return false;
         }
@@ -51,7 +51,6 @@
                     byte[] imageData = imageFile.getBytes();
                     account.setImage(imageData);
                 } catch (IOException e) {
-
                     e.printStackTrace();
                 }
             }
@@ -66,8 +65,6 @@
 
             return count > 0;
         }
-
-
 
         public void deleteUserById(Long userId) {
             accountRepository.deleteById(userId);

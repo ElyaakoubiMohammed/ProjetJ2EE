@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Base64;
@@ -45,6 +46,7 @@ public class AdminController {
         model.addAttribute("users", users);
         return "userslistA";
     }
+
     @GetMapping("/gameslistA")
     public String gamesList(Model model, @RequestParam(name = "search", required = false) String searchQuery) {
         List<Game> games;
@@ -66,6 +68,12 @@ public class AdminController {
         model.addAttribute("games", games);
 
         return "gameslistA";
+    }
+
+    @RequestMapping("/admin")
+    public String Admin()
+    {
+        return "adminMain";
     }
 
     public String bytesToBase64(byte[] bytes) {

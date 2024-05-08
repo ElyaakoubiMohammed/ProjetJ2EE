@@ -23,5 +23,4 @@ public class Comment
     @JoinColumn(name = "game_id")
     private Game game;
 
-
 }

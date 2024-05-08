@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 <body>
-
 <div class="card-wrapper">
     <div class="card">
         <!-- card left -->
@@ -139,19 +138,17 @@
                     </reply>
                 </li>
         </ul>
-
      -->
-
-    <form action="/game-details/${game.id}/add-comment" method="post">
+    <form th:action="@{/game-details/add-comment}" method="post">
         <div class="create_new_comment">
             <div class="input_comment">
                 <input type="text" name="content" placeholder="Join the conversation..">
-                <input type="hidden" name="gameId" th:value="${game.gameId}">
+                <!-- Ensure game object is not null before accessing gameId -->
+                <input type="hidden" name="gameId" th:if="${game != null}" th:value="${game.gameId}">
                 <button style="margin-top: 20px; margin-left: 790px" type="submit">Add comment</button>
             </div>
         </div>
     </form>
-
 
     <!-- new comment -->
     <div class="new_comment" th:if="${game.comments != null and not #lists.isEmpty(game.comments)}">
