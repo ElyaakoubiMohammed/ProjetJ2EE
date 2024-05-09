@@ -22,12 +22,13 @@
         private CommentRepository commentRepository;
 
         @PostMapping("/game-details/add-comment")
-        public String addComment(@RequestParam("gameId") Long gameId,@RequestParam("content") String newComment, Model model) {
+        public String addComment(@RequestParam("gameId") Long gameId,@RequestParam("content") String newComment,@RequestParam("title") String titre, Model model) {
             Game game = gameRepository.findById(gameId).orElse(null);
             if (game != null) {
                 Comment com=new Comment();
                 com.setGame(game);
                 com.setFeedBack(newComment);
+                com.setTitre(titre);
                 commentRepository.save(com);
             }
             model.addAttribute("gameId", gameId);

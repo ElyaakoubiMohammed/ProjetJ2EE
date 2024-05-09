@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Product Card/Page</title>
+    <title th:text="${game.gameName}">Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Check your CSS link here -->
     <link rel="stylesheet" th:href="@{/gamedetails/style.css}"> <!-- Adjust the href as needed -->
@@ -142,8 +142,8 @@
     <form th:action="@{/game-details/add-comment}" method="post">
         <div class="create_new_comment">
             <div class="input_comment">
+                <input style="margin-bottom: 30px;" type="text" name="title" placeholder="Title">
                 <input type="text" name="content" placeholder="Join the conversation..">
-                <!-- Ensure game object is not null before accessing gameId -->
                 <input type="hidden" name="gameId" th:if="${game != null}" th:value="${game.gameId}">
                 <button style="margin-top: 20px; margin-left: 790px" type="submit">Add comment</button>
             </div>
