@@ -42,6 +42,7 @@ public class CoachController
         model.addAttribute("users", users);
         return "coachlist";
     }
+
     public String bytesToBase64(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);
     }

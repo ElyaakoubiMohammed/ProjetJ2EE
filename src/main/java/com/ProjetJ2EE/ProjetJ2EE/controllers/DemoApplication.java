@@ -83,7 +83,6 @@
                     image.setPictureBase64(base64Image);
                 });
             });
-
             model.addAttribute("games", games);
 
             List<Account> coaches = accountRepository.findByusertype("C");
