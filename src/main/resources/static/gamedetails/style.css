@@ -407,5 +407,24 @@ body {
             }
         }
     }
+    .product-rating input[type="radio"] {
+        display: none;
+    }
+
+    .product-rating label {
+        font-size: 0; /* Hide the numbers */
+    }
+
+    .product-rating label:before {
+        font-size: 30px; /* Set the size of the star */
+        content: "\2605"; /* Unicode character for a star */
+        color: #ccc; /* Default color */
+        cursor: pointer;
+    }
+
+    .product-rating input[type="radio"]:checked ~ label:before,
+    .product-rating input[type="radio"]:checked ~ label:before {
+        color: gold; /* Color the selected star and the ones before it gold */
+    }
 
 }

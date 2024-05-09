@@ -19,6 +19,7 @@ public class Comment
     private String Titre;
     private String FeedBack;
     private String CommentType;
+    private int Rating;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
     private Game game;

@@ -12,6 +12,8 @@
     import org.springframework.web.bind.annotation.PostMapping;
     import org.springframework.web.bind.annotation.RequestParam;
 
+    import java.util.List;
+
     @Controller
     public class CommentController {
 
@@ -22,16 +24,35 @@
         private CommentRepository commentRepository;
 
         @PostMapping("/game-details/add-comment")
-        public String addComment(@RequestParam("gameId") Long gameId,@RequestParam("content") String newComment,@RequestParam("title") String titre, Model model) {
+        public String addComment(@RequestParam("gameId") Long gameId,
+                                 @RequestParam("content") String newComment,
+                                 @RequestParam("title") String titre,
+                                 @RequestParam("rating") int rating,
+                                 Model model) {
             Game game = gameRepository.findById(gameId).orElse(null);
             if (game != null) {
-                Comment com=new Comment();
-                com.setGame(game);
-                com.setFeedBack(newComment);
-                com.setTitre(titre);
-                commentRepository.save(com);
+                // Create a new comment
+                Comment comment = new Comment();
+                comment.setGame(game);
+                comment.setFeedBack(newComment);
+                comment.setTitre(titre);
+                comment.setRating(rating);
+
+                // Save the comment
+                commentRepository.save(comment);
+
+                // Calculate the new game rating
+                List<Comment> comments = game.getComments();
+                double totalRatingSum = comments.stream().mapToInt(Comment::getRating).sum() + rating;
+                double newRating = totalRatingSum / (comments.size() + 1); // Add 1 for the new comment
+
+                // Update the game's rating
+                game.setRating((int) Math.round(newRating));
+                gameRepository.save(game);
             }
             model.addAttribute("gameId", gameId);
             return "redirect:/main";
         }
+
+
     }
