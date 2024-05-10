@@ -55,7 +55,20 @@
                 model.addAttribute("error", "Email or username already exists");
                 return "register";
             }
-            senderService.sendEmail(account.getEmail(),"This is subject","This is email body");
+            senderService.sendEmail(account.getEmail(), "Welcome to NexaPlay - Your Ultimate Gaming Destination!",
+                    "Dear " + account.getUsername() + ",\n\n" +
+                            "Welcome to NexaPlay, your ultimate destination for gaming excitement and adventure! We are absolutely delighted to have you join our ever-growing community of gamers.\n\n" +
+                            "Here at NexaPlay, we're passionate about gaming and committed to providing you with an unparalleled gaming experience. From heart-pounding action to brain-teasing puzzles, our extensive library of games has something for every taste and preference.\n\n" +
+                            "Your account setup is now complete, and here are your account details:\n" +
+                            "Email Address: " + account.getEmail() + "\n" +
+                            "Username: " + account.getUsername() + "\n\n" +
+                            "As a valued member of NexaPlay, you'll have access to exclusive features, exciting challenges, and a vibrant community of fellow gamers. Take your time to explore all that NexaPlay has to offer and embark on unforgettable gaming journeys.\n\n" +
+                            "But wait, there's more! In addition to our vast collection of games, we also offer regular tournaments, events, and special promotions to keep the excitement level high. Be sure to stay tuned for upcoming announcements and opportunities to showcase your gaming skills.\n\n" +
+                            "Should you ever need assistance, our dedicated support team is here to help. Whether you have questions about a game, encounter technical issues, or simply want to share your feedback, we're just a click away.\n\n" +
+                            "Once again, welcome to NexaPlay! Get ready to immerse yourself in a world of endless gaming possibilities and unforgettable moments.\n\n" +
+                            "Best regards,\n" +
+                            "The NexaPlay Team");
+
             return "main";
         }
 
