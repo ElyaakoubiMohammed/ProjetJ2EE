@@ -107,43 +107,13 @@
 <!-- comments container -->
 <div class="comment_block">
 
-    <!--
-        Comments are structured in the following way:
 
-        {ul} defines a new comment (singular)
-        {li} defines a new reply to the comment {ul}
 
-        example:
-
-        <ul>
-            <comment>
-
-            </comment
-
-                <li>
-                    <reply>
-
-                    </reply>
-                </li>
-
-                <li>
-                    <reply>
-
-                    </reply>
-                </li>
-
-                <li>
-                    <reply>
-
-                    </reply>
-                </li>
-        </ul>
-     -->
     <form th:action="@{/game-details/add-comment}" method="post">
         <div class="create_new_comment">
             <div class="input_comment">
-                <input style="margin-bottom: 30px;" type="text" name="title" placeholder="Title">
-                <input type="text" name="content" placeholder="Join the conversation..">
+                <input style="margin-bottom: 30px;" type="text" name="title" placeholder="Title" required>
+                <input type="text" name="content" placeholder="Join the conversation.." required>
                 <input type="hidden" name="gameId" th:if="${game != null}" th:value="${game.gameId}">
                 <!-- Star rating input field -->
                 <div class="product-rating">
