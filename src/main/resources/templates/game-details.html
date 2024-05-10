@@ -166,6 +166,28 @@
                     <p th:text="${comment.titre}" style="font-weight: bolder; color: white; font-size: 25px; margin-bottom: 20px"></p>
                     <p th:text="${comment.feedBack}"></p>
                 </div>
+                <div class="product-content">
+                    <div class="product-rating">
+                <span th:if="${comment.rating > 0}">
+        <span th:each="i : ${#numbers.sequence(1, comment.rating)}">
+            <i class="fas fa-star" style="color: gold;"></i>
+        </span>
+        <span th:if="${comment.rating % 1 != 0}">
+            <i class="fas fa-star-half-alt" style="color: gold;"></i>
+        </span>
+        <span th:if="${comment.rating < 5}">
+            <span th:each="i : ${#numbers.sequence(1, 5 - comment.rating)}">
+                <i class="far fa-star" style="color: #ccc;"></i>
+            </span>
+        </span>
+    </span>
+                        <span th:if="${comment.rating == 0}">
+        <span th:each="i : ${#numbers.sequence(1, 5)}">
+            <i class="far fa-star" style="color: #ccc;"></i>
+        </span>
+    </span>
+                        <span th:text="${comment.rating}"></span>
+                    </div>
                 <div class="comment_toolbar">
 
                     <div class="comment_tools" style="margin-left: 570px">

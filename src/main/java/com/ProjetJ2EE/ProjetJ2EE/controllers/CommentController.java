@@ -31,7 +31,6 @@
                                  Model model) {
             Game game = gameRepository.findById(gameId).orElse(null);
             if (game != null) {
-                // Create a new comment
                 Comment comment = new Comment();
                 comment.setGame(game);
                 comment.setFeedBack(newComment);
@@ -41,13 +40,21 @@
                 // Save the comment
                 commentRepository.save(comment);
 
-                // Calculate the new game rating
-                List<Comment> comments = game.getComments();
-                double totalRatingSum = comments.stream().mapToInt(Comment::getRating).sum() + rating;
-                double newRating = totalRatingSum / (comments.size() + 1); // Add 1 for the new comment
 
-                // Update the game's rating
-                game.setRating((int) Math.round(newRating));
+                List<Comment> comments = game.getComments();
+                int numberOfRatings = comments.size();
+
+// Calculate the total satisfaction score of existing comments
+                double totalSatisfactionScore = comments.stream().mapToInt(Comment::getRating).sum();
+
+// Add the new rating to the total satisfaction score
+                totalSatisfactionScore += rating;
+
+// Calculate the new rating score
+                double ratingScore = totalSatisfactionScore / (numberOfRatings + 1);
+
+                game.setRating((int) Math.round(ratingScore));
+
                 gameRepository.save(game);
             }
             model.addAttribute("gameId", gameId);
