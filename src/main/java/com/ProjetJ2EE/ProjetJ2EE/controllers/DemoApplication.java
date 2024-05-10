@@ -8,8 +8,11 @@
     import com.ProjetJ2EE.ProjetJ2EE.repositories.GameRepository;
     import com.ProjetJ2EE.ProjetJ2EE.repositories.ImageRepository;
     import com.ProjetJ2EE.ProjetJ2EE.services.AccountService;
+    import com.ProjetJ2EE.ProjetJ2EE.services.JavaSmtpGmailSenderService;
     import org.apache.catalina.connector.ClientAbortException;
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.mail.SimpleMailMessage;
+    import org.springframework.mail.javamail.JavaMailSender;
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.*;
@@ -32,8 +35,10 @@
         private AccountRepository accountRepository;
         @Autowired
         private ImageRepository imageRepository;
-
-
+        @Autowired
+        private JavaSmtpGmailSenderService senderService;
+        @Autowired
+        private JavaMailSender emailSender;
         @Autowired
         public DemoApplication(AccountService accountService) {
             this.accountService = accountService;
@@ -50,6 +55,7 @@
                 model.addAttribute("error", "Email or username already exists");
                 return "register";
             }
+            senderService.sendEmail(account.getEmail(),"This is subject","This is email body");
             return "main";
         }
 
@@ -152,5 +158,11 @@
             return "redirect:/userslistA";
         }
 
-
+        public void sendRegistrationEmail(String to) {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(to);
+            message.setSubject("Welcome to Our Application");
+            message.setText("Dear User,\n\nThank you for registering with our application.\n\nBest regards,\nThe Team");
+            emailSender.send(message);
+        }
     }
