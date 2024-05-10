@@ -104,10 +104,7 @@
     </div>
 </div>
 
-<!-- comments container -->
 <div class="comment_block">
-
-
 
     <form th:action="@{/game-details/add-comment}" method="post">
         <div class="create_new_comment">
@@ -127,7 +124,6 @@
             </div>
         </div>
     </form>
-
     <!-- new comment -->
     <div class="new_comment" th:if="${game.comments != null and not #lists.isEmpty(game.comments)}">
         <ul class="user_comment">

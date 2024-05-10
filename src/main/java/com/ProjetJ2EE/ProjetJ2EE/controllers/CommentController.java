@@ -36,21 +36,15 @@
                 comment.setFeedBack(newComment);
                 comment.setTitre(titre);
                 comment.setRating(rating);
-
-                // Save the comment
                 commentRepository.save(comment);
-
 
                 List<Comment> comments = game.getComments();
                 int numberOfRatings = comments.size();
 
-// Calculate the total satisfaction score of existing comments
                 double totalSatisfactionScore = comments.stream().mapToInt(Comment::getRating).sum();
 
-// Add the new rating to the total satisfaction score
                 totalSatisfactionScore += rating;
 
-// Calculate the new rating score
                 double ratingScore = totalSatisfactionScore / (numberOfRatings + 1);
 
                 game.setRating((int) Math.round(ratingScore));
