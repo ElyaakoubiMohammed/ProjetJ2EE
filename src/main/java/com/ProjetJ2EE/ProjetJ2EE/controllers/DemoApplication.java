@@ -18,7 +18,6 @@
     import org.springframework.web.bind.annotation.*;
     import org.springframework.web.multipart.MultipartFile;
     import java.util.stream.Collectors;
-
     import java.io.IOException;
     import java.util.Base64;
     import java.util.List;
@@ -37,8 +36,7 @@
         private ImageRepository imageRepository;
         @Autowired
         private JavaSmtpGmailSenderService senderService;
-        @Autowired
-        private JavaMailSender emailSender;
+
         @Autowired
         public DemoApplication(AccountService accountService) {
             this.accountService = accountService;
@@ -69,7 +67,7 @@
                             "Best regards,\n" +
                             "The NexaPlay Team");
 
-            return "main";
+            return "redirect:/main";
         }
 
         @GetMapping("/login")
@@ -171,11 +169,5 @@
             return "redirect:/userslistA";
         }
 
-        public void sendRegistrationEmail(String to) {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject("Welcome to Our Application");
-            message.setText("Dear User,\n\nThank you for registering with our application.\n\nBest regards,\nThe Team");
-            emailSender.send(message);
-        }
+
     }
