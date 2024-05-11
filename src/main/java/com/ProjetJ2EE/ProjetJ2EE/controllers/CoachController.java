@@ -17,7 +17,7 @@ public class CoachController
 {
     @Autowired
     private AccountRepository accountRepository;
-    @RequestMapping("/coach/index")
+    @RequestMapping("/coach")
     public String showCoach()
     {
         return "coach";
