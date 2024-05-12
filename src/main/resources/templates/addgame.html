@@ -4,77 +4,7 @@
     <meta charset="UTF-8">
     <title>Game Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align items to the top */
-            height: 100vh;
-        }
-
-        #form-container {
-            display: flex; /* Use flexbox */
-            justify-content: space-between; /* Space between columns */
-            max-width: 800px; /* Increase max width */
-            width: 100%;
-            animation: slideInDown 0.5s ease;
-        }
-
-        .form-column {
-            flex: 1; /* Take up equal space */
-            padding: 0 10px; /* Add some padding */
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        label {
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        textarea,
-        select,
-        input[type="file"],
-        input[type="submit"] {
-            width: calc(100% - 20px); /* Take up width minus padding */
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        input[type="date"]:focus,
-        textarea:focus,
-        select:focus,
-        input[type="file"]:focus {
-            border-color: dodgerblue;
-        }
-
-        input[type="submit"] {
-            background-color: dodgerblue;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #007bff;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/addgame/style.css}">
 </head>
 <body>
 <div id="form-container" class="animate__animated animate__slideInDown">

@@ -87,7 +87,6 @@
                 existingAccount.setAge(updatedAccount.getAge());
                 existingAccount.setGender(updatedAccount.getGender());
 
-                // Check if a new image is provided
                 if (imageFile != null && !imageFile.isEmpty()) {
                     try {
                         byte[] imageData = imageFile.getBytes();
@@ -96,8 +95,6 @@
                         e.printStackTrace();
                     }
                 }
-
-                // Save the updated account
                 accountRepository.save(existingAccount);
             }
         }

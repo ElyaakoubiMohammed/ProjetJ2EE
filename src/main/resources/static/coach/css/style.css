@@ -9646,3 +9646,35 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+.bg-image {
+  background-image: url('/coach/images/fort.jpg');
+
+}
+.bg-image2 {
+  background-image: url('/coach/images/mk.jpg');
+
+}
+.bg-image3 {
+  background-image: url('/coach/images/detroit.jpg');
+
+}
+.bg-image4 {
+  background-image: url('/coach/images/person_1.jpg');
+
+}
+.bg-image5 {
+  background-image: url('/coach/images/person_2.jpg');
+
+}
+.bg-image6 {
+  background-image: url('/coach/images/person_3.jpg');
+
+}
+.bg-image7 {
+  background-image: url('/coach/images/person_1.jpg');
+
+}
+.bg-image8 {
+  background-image: url('/coach/images/person_2.jpg');
+
+}
