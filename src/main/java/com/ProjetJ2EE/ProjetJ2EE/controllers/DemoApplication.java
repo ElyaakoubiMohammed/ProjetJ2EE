@@ -169,5 +169,19 @@
             return "redirect:/userslistA";
         }
 
+        @GetMapping("/editAccount/{accountId}")
+        public String editAccount(@PathVariable Long accountId, Model model) {
+
+            Account account = accountService.getAccountById(accountId);
+
+            model.addAttribute("account", account);
+
+            return "editAccount";
+        }
+        @PostMapping("/editAccount/{accountId}")
+        public String updateAccount(@PathVariable Long accountId, @ModelAttribute Account updatedAccount, @RequestParam("imageFile") MultipartFile imageFile) {
+            accountService.updateAccount(accountId, updatedAccount, imageFile);
+            return "redirect:/userslist";
+        }
 
     }

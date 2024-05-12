@@ -69,5 +69,39 @@
         public void deleteUserById(Long userId) {
             accountRepository.deleteById(userId);
         }
+
+
+        public Account getAccountById(Long accountId) {
+            return accountRepository.findById(accountId).orElse(null);
+        }
+
+        public void updateAccount(Long accountId, Account updatedAccount, MultipartFile imageFile) {
+            Account existingAccount = accountRepository.findById(accountId).orElse(null);
+            if (existingAccount != null) {
+                existingAccount.setUsername(updatedAccount.getUsername());
+                existingAccount.setEmail(updatedAccount.getEmail());
+                existingAccount.setPassword(updatedAccount.getPassword());
+                existingAccount.setCountry(updatedAccount.getCountry());
+                existingAccount.setFirstName(updatedAccount.getFirstName());
+                existingAccount.setLastName(updatedAccount.getLastName());
+                existingAccount.setAge(updatedAccount.getAge());
+                existingAccount.setGender(updatedAccount.getGender());
+
+                // Check if a new image is provided
+                if (imageFile != null && !imageFile.isEmpty()) {
+                    try {
+                        byte[] imageData = imageFile.getBytes();
+                        existingAccount.setImage(imageData);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // Save the updated account
+                accountRepository.save(existingAccount);
+            }
+        }
+
+
     }
 
