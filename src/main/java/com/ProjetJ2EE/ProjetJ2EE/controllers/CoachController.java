@@ -31,7 +31,6 @@ public class CoachController
         } else {
             users = accountRepository.findAll();
         }
-
         users.forEach(user -> {
             byte[] userImage = user.getImage();
             if (userImage != null) {
@@ -42,9 +41,7 @@ public class CoachController
         model.addAttribute("users", users);
         return "coachlist";
     }
-
     public String bytesToBase64(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);
     }
-
 }

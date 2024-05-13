@@ -54,6 +54,4 @@
             model.addAttribute("gameId", gameId);
             return "redirect:/main";
         }
-
-
     }

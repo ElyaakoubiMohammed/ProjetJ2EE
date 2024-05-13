@@ -163,9 +163,7 @@
 
         @PostMapping("/deleteUser")
         public String delete(@RequestParam("userId") Long userId) {
-
             accountService.deleteUserById(userId);
-
             return "redirect:/userslistA";
         }
 
