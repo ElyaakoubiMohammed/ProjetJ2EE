@@ -29,20 +29,8 @@ public class AdminController {
     @GetMapping("/userslistA")
     public String usersList(Model model, @RequestParam(name = "search", required = false) String searchQuery) {
         List<Account> users;
-
-        if (searchQuery != null && !searchQuery.isEmpty()) {
-            users = accountRepository.findByusernameContaining(searchQuery);
-        } else {
             users = accountRepository.findAll();
-        }
 
-        users.forEach(user -> {
-            byte[] userImage = user.getImage();
-            if (userImage != null) {
-                String base64Image = bytesToBase64(userImage);
-                user.setPictureBase64(base64Image);
-            }
-        });
         model.addAttribute("users", users);
         return "userslistA";
     }
