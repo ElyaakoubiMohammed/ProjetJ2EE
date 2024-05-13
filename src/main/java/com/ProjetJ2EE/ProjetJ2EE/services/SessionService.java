@@ -38,8 +38,6 @@ public class SessionService
                 break;
         }
         s.setGameName(game);
-
-        // Set coach ID
         Account coach = accountRepository.findById(coachId).orElse(null);
         if (coach != null) {
             s.setCoach(coach);

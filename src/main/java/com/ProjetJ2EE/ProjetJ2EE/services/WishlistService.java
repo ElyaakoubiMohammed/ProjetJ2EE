@@ -22,13 +22,10 @@ public class WishlistService {
     private WishlistRepository wishlistRepository;
     @Transactional
     public void addToWishlist(Long gameId, Long userId) {
-        // Find the game by ID
         Game game = gameRepository.findById(gameId).orElse(null);
 
-        // Find the user by ID
         Account user = accountRepository.findById(userId).orElse(null);
 
-        // Add the game to the user's wishlist
         if (game != null && user != null) {
             Wishlist wishlist = user.getWishlist();
             if (wishlist == null) {
