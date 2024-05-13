@@ -76,7 +76,7 @@
         }
 
         @PostMapping("/login")
-        public String login(@RequestParam String email, @RequestParam String password) {
+        public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
             if (accountService.validateLogin(email, password)) {
                 return "redirect:/main";
             } else {
@@ -163,7 +163,9 @@
 
         @PostMapping("/deleteUser")
         public String delete(@RequestParam("userId") Long userId) {
+
             accountService.deleteUserById(userId);
+
             return "redirect:/userslistA";
         }
 
